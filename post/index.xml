@@ -23,7 +23,7 @@
 &lt;p&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Cependant, à la différence des &lt;strong&gt;gestionnaires de contenu&lt;/strong&gt; (ou &lt;em&gt;CMS&lt;/em&gt; pour &lt;em&gt;Content Mangement System&lt;/em&gt;) comme &lt;code&gt;WordPress&lt;/code&gt;, &lt;code&gt;Joomla&lt;/code&gt; ou bien &lt;code&gt;Drupal&lt;/code&gt;, celui-ci n&amp;#8217;est pas basé sur une solution de type &amp;#8220;AMP&amp;#8221; (&lt;em&gt;Apache&lt;/em&gt; + &lt;em&gt;MySQL&lt;/em&gt; + &lt;em&gt;PHP&lt;/em&gt;). Ainsi, au lieu de construire les pages web &amp;#8220;à la volée&amp;#8221; sur le serveur au moment où un internaute désire les consulter, &lt;code&gt;HUGO&lt;/code&gt; va générer en local l&amp;#8217;ensemble des pages du site après chaque mise à jour de son contenu par son concepteur. Une fois généré, le site n&amp;#8217;a plus qu&amp;#8217;à être transféré chez l&amp;#8217;hébergeur. La tâche de ce dernier ne consiste donc qu&amp;#8217;à servir, tels quels, les fichiers HTML au moment de leur consultation d&amp;#8217;où le terme de &lt;strong&gt;site web statique&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cependant, à la différence des &lt;strong&gt;gestionnaires de contenu&lt;/strong&gt; (ou &lt;em&gt;CMS&lt;/em&gt; pour &lt;em&gt;Content Mangement System&lt;/em&gt;) comme &lt;code&gt;WordPress&lt;/code&gt;, &lt;code&gt;Joomla&lt;/code&gt; ou bien &lt;code&gt;Drupal&lt;/code&gt;, celui-ci n&amp;#8217;est pas basé sur une solution de type &amp;#8220;AMP&amp;#8221; (&lt;em&gt;Apache&lt;/em&gt; + &lt;em&gt;MySQL&lt;/em&gt; + &lt;em&gt;PHP&lt;/em&gt;). Ainsi, au lieu de construire les pages web &amp;#8220;à la volée&amp;#8221; sur le serveur au moment où un internaute désire les consulter, &lt;code&gt;HUGO&lt;/code&gt; va générer en local l&amp;#8217;ensemble des pages du site après chaque mise à jour de son contenu par son concepteur. Une fois généré, le site n&amp;#8217;a plus qu&amp;#8217;à être transféré chez l&amp;#8217;hébergeur. La tâche de ce dernier ne consiste donc qu&amp;#8217;à servir, tels quels, les fichiers HTML au moment de leur consultation par l&amp;#8217;internaute d&amp;#8217;où le terme de &lt;strong&gt;site web statique&lt;/strong&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;L&amp;#8217;idée est loin d&amp;#8217;être nouvelle mais elle avait été délaissée car elle offrait moins de possiblités en terme de contenu dynamique par rapport à une solution s&amp;#8217;appuyant sur l&amp;#8217;utilisation d&amp;#8217;une base de données et d&amp;#8217;un langage &amp;#8220;côté serveur&amp;#8221; comme &lt;code&gt;PHP&lt;/code&gt;. Cependant, la technologie évoluant (&lt;code&gt;HTML5&lt;/code&gt;, &lt;code&gt;CSS3&lt;/code&gt;, &lt;code&gt;Javascript&lt;/code&gt; + librairies comme &lt;code&gt;JQuery&lt;/code&gt;, &lt;code&gt;Bootstrap&lt;/code&gt;&amp;#8230;&amp;#8203;), il est désormais possible d&amp;#8217;obtenir un site d&amp;#8217;apparence moderne à partir d&amp;#8217;un contenu statique&amp;#8230;&amp;#8203; à condition que les besoins restent raisonnables. Ainsi, cette façon de procéder sera sans aucun doute plus adaptée à un blog qu&amp;#8217;à un site marchand pour lequel la présence d&amp;#8217;une base de donnée sur le serveur est indispensable.&lt;/p&gt;
@@ -31,14 +31,16 @@
 &lt;div class=&#34;paragraph&#34;&gt;
 &lt;p&gt;J&amp;#8217;ai découvert &lt;code&gt;HUGO&lt;/code&gt; suite à la recherche d&amp;#8217;une solution pour construire un site web à partir de fichiers texte utilisant une syntaxe de type Wiki (voir &lt;a href=&#34;https://fr.wikipedia.org/wiki/Langage_de_balisage_léger&#34;&gt;cet article de Wikipedia&lt;/a&gt; pour plus d&amp;#8217;explications). J&amp;#8217;utilise depuis quelques années une d&amp;#8217;entre elles, qui se nomme &lt;a href=&#34;http://www.methods.co.nz/asciidoc/&#34;&gt;&lt;code&gt;Asciidoc&lt;/code&gt;&lt;/a&gt;, pour produire mes supports de cours. J&amp;#8217;apprécie cette syntaxe car, outre le fait qu&amp;#8217;elle couvre mes besoins (structuration de document, liens hypertextes, coloration syntaxique&amp;#8230;&amp;#8203;), elle me permet, à partir d&amp;#8217;un simple éditeur de texte, de produire des documents en me focalisant davantage sur leur contenu que sur leur apparence au moment de leur rédaction.&lt;/p&gt;
 &lt;/div&gt;
+&lt;hr&gt;
 &lt;div class=&#34;imageblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;a class=&#34;image&#34; href=&#34;http://asciidoctor.org/images/zen-screenshot.png&#34;&gt;&lt;img src=&#34;https://infores-sn.github.io/img/20161231/asciidoc.png&#34; alt=&#34;asciidoc&#34; width=&#34;800&#34;&gt;&lt;/a&gt;
+&lt;a class=&#34;image&#34; href=&#34;https://infores-sn.github.io/img/20161231/asciidoc.png&#34;&gt;&lt;img src=&#34;https://infores-sn.github.io/img/20161231/asciidoc.png&#34; alt=&#34;asciidoc&#34; width=&#34;800&#34;&gt;&lt;/a&gt;
 &lt;/div&gt;
 &lt;div class=&#34;title&#34;&gt;Figure 1. Exemple de fichier &amp;#8220;Asciidoc&amp;#8221; avec son rendu en HTML suite à son traitement pas l&amp;#8217;outil &lt;code&gt;asciidoctor&lt;/code&gt; [&lt;a href=&#34;http://asciidoctor.org/images/zen-screenshot.png&#34;&gt;&lt;em&gt;Source&lt;/em&gt;&lt;/a&gt;]&lt;/div&gt;
 &lt;/div&gt;
+&lt;hr&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Bien qu&#39; &lt;code&gt;HUGO&lt;/code&gt; utilise nativement la syntaxe &lt;code&gt;Markdown&lt;/code&gt;, il prend également en charge &lt;code&gt;Asciidoc&lt;/code&gt; depuis sa version v0.14 grâce à l&amp;#8217;utilisation d&amp;#8217;une fonctionnalité nommée &amp;#8220;external helpers&amp;#8221;. Le &lt;a href=&#34;http://kicad-pcb.org&#34;&gt;site web de Kicad&lt;/a&gt; (&amp;#8594; logiciel libre de conception électronique) en est une illustration. En effet, la description ou le parcours du &lt;a href=&#34;https://github.com/KiCad/kicad-website&#34;&gt;dépôt Github&lt;/a&gt; (&amp;#8594; service d&amp;#8217;hébergement et de gestion version) où est stocké le source du site montrent bien l&amp;#8217;utilisation de fichiers &lt;code&gt;Asciidoc&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Bien qu&#39; &lt;code&gt;HUGO&lt;/code&gt; ne comprenne nativement que la syntaxe &lt;code&gt;Markdown&lt;/code&gt;, il prend également en charge &lt;code&gt;Asciidoc&lt;/code&gt; depuis sa version v0.14 grâce à l&amp;#8217;utilisation d&amp;#8217;une fonctionnalité nommée &amp;#8220;external helpers&amp;#8221;. Le &lt;a href=&#34;http://kicad-pcb.org&#34;&gt;site web de Kicad&lt;/a&gt; (&amp;#8594; logiciel libre de conception électronique) en est une illustration. En effet, la description ou le parcours du &lt;a href=&#34;https://github.com/KiCad/kicad-website&#34;&gt;dépôt Github&lt;/a&gt; (&amp;#8594; service d&amp;#8217;hébergement et de gestion version) où est stocké le source du site montre bien l&amp;#8217;utilisation de fichiers &lt;code&gt;Asciidoc&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;sect1&#34;&gt;
 &lt;h2 id=&#34;_1_sup_ière_sup_mise_en_œuvre_d_code_hugo_code&#34;&gt;1&lt;sup&gt;ière&lt;/sup&gt; Mise en œuvre d&#39; &lt;code&gt;HUGO&lt;/code&gt;&lt;/h2&gt;
@@ -64,23 +66,32 @@
 &lt;p&gt;Installer le logiciel &lt;code&gt;HUGO&lt;/code&gt; (&amp;#8594; voir : &lt;a href=&#34;https://gohugo.io/overview/installing/&#34;&gt;Installing Hugo&lt;/a&gt;)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Se rendre, avec un terminal, dans le répertoire dans lequel on souhaite stocker les sources du site puis exécuter &lt;code&gt;HUGO&lt;/code&gt; pour créer une arborescence de fichiers&lt;/p&gt;
+&lt;p&gt;Se rendre, avec un terminal, dans un répertoire de son choix puis exécuter &lt;code&gt;HUGO&lt;/code&gt; pour qu&amp;#8217;il crée l&amp;#8217;arborescence de fichiers qui contiendra l&amp;#8217;ensemble du site&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;Exemple sous Linux ou Mac OSX :&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd ~
-hugo new site mon_site_web
-cd mon_site_web&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cd ~
+$ hugo new site mon-site-web
+$ cd mon-site-web
+$ tree -f
+.
+├── ./archetypes
+├── ./config.toml
+├── ./content
+├── ./data
+├── ./layouts
+├── ./static
+└── ./themes&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Initialiser un dépôt &lt;code&gt;git&lt;/code&gt; pour le source du site ainsi que pour sa version de production (&amp;#8592; résultat du traitement des fichiers source par &lt;code&gt;HUGO&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;Initialiser un dépôt &lt;code&gt;git&lt;/code&gt; pour le source du site ainsi que pour sa version de production (&amp;#8592; résultat du traitement des fichiers source par &lt;code&gt;HUGO&lt;/code&gt;) qui sera présente dans le répertoire &lt;code&gt;public/&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git init
-git remote add origin https://github.com/VOTRE-NOM-D-UTILISATEUR/website.git
-git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISATEUR.github.io.git public&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git init
+$ git remote add origin https://github.com/VOTRE-NOM-D-UTILISATEUR/website.git
+$ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISATEUR.github.io.git public&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -89,7 +100,7 @@ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISA
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;Exemple :&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git clone https://github.com/gcushen/hugo-academic.git themes/academic&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/gcushen/hugo-academic.git themes/academic&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -97,7 +108,7 @@ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISA
 &lt;p&gt;Copier l&amp;#8217;exemple de site fourni avec le thème dans le répertoire racine du site.&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cp -av themes/academic/exampleSite/* .&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cp -av themes/academic/exampleSite/* .&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -105,9 +116,17 @@ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISA
 &lt;p&gt;Démarrer le serveur web fourni par &lt;code&gt;HUGO&lt;/code&gt; pour prévisualiser le site qui sera alors consultable à l&amp;#8217;URL &lt;a href=&#34;http://localhost:1313&#34; class=&#34;bare&#34;&gt;http://localhost:1313&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;hugo server --watch&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo server --watch&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;hr&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;a class=&#34;image&#34; href=&#34;https://infores-sn.github.io/img/20161231/1st-site.png&#34;&gt;&lt;img src=&#34;https://infores-sn.github.io/img/20161231/1st-site.png&#34; alt=&#34;1st site&#34; width=&#34;640&#34;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&#34;title&#34;&gt;Figure 2. Rendu HTML du site consultable en local sur &lt;code&gt;&lt;a href=&#34;http://localhost:1313&#34; class=&#34;bare&#34;&gt;http://localhost:1313&lt;/a&gt;&lt;/code&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;hr&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Personnaliser l&amp;#8217;apparence du site en modifiant certains paramètres du thème (&amp;#8594; voir : &lt;a href=&#34;http://gcushen.github.io/hugo-academic-demo/post/getting-started/#getting-started&#34; class=&#34;bare&#34;&gt;http://gcushen.github.io/hugo-academic-demo/post/getting-started/#getting-started&lt;/a&gt; pour une personnalisation du thème &amp;#8220;Academic&amp;#8221;).&lt;/p&gt;
@@ -123,7 +142,7 @@ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISA
 &lt;table&gt;
 &lt;tr&gt;
 &lt;td class=&#34;icon&#34;&gt;
-&lt;div class=&#34;title&#34;&gt;Note&lt;/div&gt;
+&lt;i class=&#34;fa icon-note&#34; title=&#34;Note&#34;&gt;&lt;/i&gt;
 &lt;/td&gt;
 &lt;td class=&#34;content&#34;&gt;
 &lt;div class=&#34;ulist&#34;&gt;
@@ -131,7 +150,7 @@ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISA
 &lt;li&gt;
 &lt;p&gt;Ici, l&amp;#8217;extension &lt;code&gt;.md&lt;/code&gt; du fichier informe &lt;code&gt;HUGO&lt;/code&gt; qu&amp;#8217;il doit interpréter son contenu comme du code &lt;code&gt;Markdown&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Si on souhaite utiliser la syntaxe &lt;code&gt;Asciidoc&lt;/code&gt;, il faut d&amp;#8217;une part spécifier l&amp;#8217;extension &lt;code&gt;.adoc&lt;/code&gt; &lt;strong&gt;et d&amp;#8217;autre part&lt;/strong&gt; installer le logiciel &lt;code&gt;asciidoctor&lt;/code&gt; car cette syntaxe n&amp;#8217;est pas prise en charge nativement par &lt;code&gt;HUGO&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Si on souhaite utiliser la syntaxe &lt;code&gt;Asciidoc&lt;/code&gt;, il faut d&amp;#8217;une part spécifier l&amp;#8217;extension &lt;code&gt;.adoc&lt;/code&gt; &lt;strong&gt;et d&amp;#8217;autre part&lt;/strong&gt; installer le logiciel &lt;code&gt;asciidoctor&lt;/code&gt; car cette syntaxe n&amp;#8217;est pas prise en charge nativement par &lt;code&gt;HUGO&lt;/code&gt; et nécessite donc un convertisseur externe.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -175,7 +194,7 @@ total in 154 ms&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Déployer le site en copiant le contenu du  répertoire &lt;code&gt;public/&lt;/code&gt; sur &lt;code&gt;Github&lt;/code&gt;. Ceci se fera à l&amp;#8217;aide d&amp;#8217;une séquence de commandes ressemblante à ce qui suit :&lt;/p&gt;
+&lt;p&gt;Déployer le site en copiant le contenu du  répertoire &lt;code&gt;public/&lt;/code&gt; sur &lt;code&gt;Github&lt;/code&gt;. Ceci se fera à l&amp;#8217;aide d&amp;#8217;une séquence de commandes qui ressemblera certainement à ce qui suit :&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
 &lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;cd public
@@ -212,7 +231,10 @@ git push -u origin master&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Malgré un numéro de version (v0.18 à l&amp;#8217;écriture de ces lignes) qui trahit sa jeunesse, la communauté qui participe à son développement semble très active et laisse présager la mise à disposition prochaine d&amp;#8217;une version stable.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&#34;paragraph&#34;&gt;
-&lt;p&gt;Dans l&amp;#8217;éventualité où &lt;code&gt;HUGO&lt;/code&gt; périclite ou ne me satisfait plus, le contenu du site étant constitué de simple fichiers textes, il me sera de toute façon toujours possible de récupérer facilement l&amp;#8217;information utile pour l&amp;#8217;exploiter autrement.&lt;/p&gt;
+&lt;p&gt;Dans l&amp;#8217;éventualité où &lt;code&gt;HUGO&lt;/code&gt; périclite ou ne me satisfait plus, le contenu du site étant constitué de simple fichiers texte, il me sera de toute façon toujours possible de récupérer facilement l&amp;#8217;information utile pour l&amp;#8217;exploiter autrement.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;red&#34;&gt;&lt;span class=&#34;icon&#34;&gt;&lt;i class=&#34;fa fa-power-off fa-1x&#34;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description>
