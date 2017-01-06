@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bitwise on {Pervasion} numérique</title>
+    <link>https://infores-sn.github.io/tags/bitwise/index.xml</link>
+    <description>Recent content in Bitwise on {Pervasion} numérique</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <copyright>&amp;copy; 2016 Claude Defrance</copyright>
+    <atom:link href="/tags/bitwise/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Astuce binaire : extraire la valeur d&#39;un bit en C</title>
+      <link>https://infores-sn.github.io/post/bitwise-hack/</link>
+      <pubDate>Fri, 06 Jan 2017 17:13:37 +0000</pubDate>
+      
+      <guid>https://infores-sn.github.io/post/bitwise-hack/</guid>
+      <description>&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Voici une astuce découverte par hasard dans un fichier source de la librairie standard d&amp;#8217;Arduino.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;À l&amp;#8217;occasion de la préparation d&amp;#8217;un cours d&amp;#8217;initiation à l&amp;#8217;électronique traitant des registres à décalage, je suis tombé sur une astuce de manipulation de bits que je n&amp;#8217;avais jamais rencontrée. Celle-ci vise à extraire la valeur d&amp;#8217;un bit du contenu d&amp;#8217;une variable.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Cette astuce apparaît aux lignes 7 et 9 du code source de la fonction &lt;code&gt;shiftOut()&lt;/code&gt; disponible dans le fichier &lt;code&gt;wiring_shift.c&lt;/code&gt; (&amp;#8594; répertoire &lt;code&gt;/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino&lt;/code&gt; sous Mac OSX).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;CodeRay highlight nowrap&#34;&gt;&lt;code data-lang=&#34;ruby&#34;&gt;&lt;table class=&#34;CodeRay&#34;&gt;&lt;tr&gt;
+  &lt;td class=&#34;line-numbers&#34;&gt;&lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;
+  &lt;td class=&#34;code&#34;&gt;&lt;pre&gt;void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+{
+   uint8_t i;
+
+   &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (i = &lt;span class=&#34;integer&#34;&gt;0&lt;/span&gt;; i &amp;lt; &lt;span class=&#34;integer&#34;&gt;8&lt;/span&gt;; i++)  {
+      &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (bitOrder == &lt;span class=&#34;constant&#34;&gt;LSBFIRST&lt;/span&gt;)
+         digitalWrite(dataPin, !!(val &amp;amp; (&lt;span class=&#34;integer&#34;&gt;1&lt;/span&gt; &amp;lt;&amp;lt; i)));
+      &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt;
+         digitalWrite(dataPin, !!(val &amp;amp; (&lt;span class=&#34;integer&#34;&gt;1&lt;/span&gt; &amp;lt;&amp;lt; (&lt;span class=&#34;integer&#34;&gt;7&lt;/span&gt; - i))));
+
+      digitalWrite(clockPin, &lt;span class=&#34;constant&#34;&gt;HIGH&lt;/span&gt;);
+      digitalWrite(clockPin, &lt;span class=&#34;constant&#34;&gt;LOW&lt;/span&gt;);
+   }
+}&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Cette fonction consiste à envoyer sur une broche configurable de l&amp;#8217;Arduino (&amp;#8594; paramètre &lt;code&gt;dataPin&lt;/code&gt;) et les unes après les autres (&amp;#8594; lignes 7 ou 9), les valeurs des bits d&amp;#8217;un octet (&amp;#8594; paramètre &lt;code&gt;val&lt;/code&gt;). L&amp;#8217;ordre dans lequel les bits sont envoyés est déterminé par le paramètre &lt;code&gt;bitOrder&lt;/code&gt; (&amp;#8594; valeur : &lt;code&gt;MSBFIRST&lt;/code&gt; ou &lt;code&gt;LSBFIRST&lt;/code&gt;). Une impulsion est générée sur une 2&lt;sup&gt;ième&lt;/sup&gt; broche (&amp;#8594; paramètre &lt;code&gt;clockPin&lt;/code&gt;) à chaque fois qu&amp;#8217;un nouveau bit de donnée est présent en sortie (&amp;#8594; lignes 11 &amp;amp; 12).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Le schéma ci-dessous illustre un cas typique d&amp;#8217;utilisation de cette fonction dans un montage qui pilote un afficheur 7 segments. La broche de l&amp;#8217;Arduino correspondante au paramètre &lt;code&gt;dataPin&lt;/code&gt; (signal &lt;code&gt;SDI&lt;/code&gt; sur le schéma) est reliée à la broche &lt;code&gt;DS&lt;/code&gt; du registre à décalage référencé &lt;a href=&#34;http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf&#34;&gt;74HC595&lt;/a&gt;. La broche du paramètre &lt;code&gt;clockPin&lt;/code&gt; est quant à elle reliée à la broche &lt;code&gt;SH_CP&lt;/code&gt; du &lt;a href=&#34;http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf&#34;&gt;74HC595&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34; style=&#34;text-align: center&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;a class=&#34;image&#34; href=&#34;https://infores-sn.github.io/img/20170106/schema_74hc595.png&#34;&gt;&lt;img src=&#34;https://infores-sn.github.io/img/20170106/schema_74hc595.png&#34; alt=&#34;schema 74hc595&#34; width=&#34;800&#34;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Mais, revenons à l&amp;#8217;astuce en question&amp;#8230;&amp;#8203;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;La ligne 7 du code source fait apparaître l&amp;#8217;expression &lt;code&gt;!!(val &amp;amp; (1 &amp;lt;&amp;lt; i)&lt;/code&gt;. Le rôle de celle-ci est de déterminer la valeur du bit de rang &lt;code&gt;i&lt;/code&gt;, donc 0 ou 1, de l&amp;#8217;octet &lt;code&gt;val&lt;/code&gt;. Ce bit est ensuite envoyé sur la broche  &lt;code&gt;dataPin&lt;/code&gt; à l&amp;#8217;aide de la fonction &lt;code&gt;digitalWrite()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Cette expression m&amp;#8217;a un peu intrigué au départ car elle fait usage à la fois d&amp;#8217;opérateurs de logique booléenne et d&amp;#8217;opérateurs agissant sur des bits (&lt;em&gt;bitwise operators&lt;/em&gt; en anglais ou &amp;#8220;opérateurs bit à bit&amp;#8221; en français). Le &lt;code&gt;!&lt;/code&gt; correspond ainsi à la négation de l&amp;#8217;algèbre de Boole tandis que le &lt;code&gt;&amp;amp;&lt;/code&gt; et le &lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt; correspondent respectivement aux opérations bit à bit du ET et du décalage à gauche.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Or, faire intervenir des opérateurs à ce point différents dans le cadre d&amp;#8217;une même expression doit toujours, à mon sens, susciter la défiance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Avant de décomposer cette expression sur un cas concret afin de &amp;#8220;démontrer&amp;#8221; sa pertinence, rappelons comment, au niveau du langage C, les valeurs de vérité d&amp;#8217;une proposition booléenne sont déterminées :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;sont considérées comme FAUSSES les expressions dont l&amp;#8217;évaluation donne 0 ;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;sont considérées comme VRAIES les expressions dont l&amp;#8217;évaluation donne un nombre &lt;strong&gt;différent de 0&lt;/strong&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Pour les besoins de la démonstration, considérons que &lt;code&gt;val&lt;/code&gt; contienne la valeur binaire &lt;code&gt;10100101&lt;/code&gt; et que la valeur décimale de &lt;code&gt;i&lt;/code&gt; soit &lt;code&gt;2&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;L&amp;#8217;évaluation de &lt;code&gt;(1&amp;lt;&amp;lt;i)&lt;/code&gt; mène à la valeur binaire &lt;code&gt;00000100&lt;/code&gt; (1 décalé de 2 positions vers la gauche).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;L&amp;#8217;évaluation de &lt;code&gt;(val &amp;amp; (1 &amp;lt;&amp;lt; i)&lt;/code&gt; mène également à la valeur binaire &lt;code&gt;00000100&lt;/code&gt; ou &lt;code&gt;4&lt;/code&gt; en décimal. En effet :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;   10100101
+ &amp;amp; 00000100
+ ----------
+   00000100&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Pour la suite de l&amp;#8217;évaluation, il est utile de se référer au paragraphe &lt;strong&gt;6.5.3.3 Unary arithmetic operators&lt;/strong&gt; de la &lt;a href=&#34;http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf&#34;&gt;norme ISO/IEC 9899:TC2&lt;/a&gt; :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;quoteblock&#34;&gt;
+&lt;blockquote&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;The result of the logical negation operator ! is 0 if the value of its operand compares unequal to 0, 1 if the value of its operand compares equal to 0. The result has type int. The expression !E is equivalent to (0==E).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;attribution&#34;&gt;
+&amp;#8212; ISO/IEC 9899 - Programming languages - C
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Conformément à ce que dit la norme, le résultat final de l&amp;#8217;évaluation de l&amp;#8217;ensemble de l&amp;#8217;expression donnera donc bien la valeur attendue c&amp;#8217;est-à-dire &lt;code&gt;1&lt;/code&gt; pour le bit de rang 2 de &lt;code&gt;val&lt;/code&gt; (i.e. le 3&lt;sup&gt;ième&lt;/sup&gt; bit en partant de la droite) . En effet, &lt;code&gt;!!(val &amp;amp; (1 &amp;lt;&amp;lt; i) = !!(4) = !(!(4)) = !(0) = 1&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;Si on considère à présent que la valeur de &lt;code&gt;i&lt;/code&gt; est 4, l&amp;#8217;évaluation de &lt;code&gt;(val &amp;amp; (1 &amp;lt;&amp;lt; i)&lt;/code&gt; mène cette fois à la valeur binaire &lt;code&gt;00000000&lt;/code&gt; ou simplement &lt;code&gt;0&lt;/code&gt; en décimal. En effet :&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre&gt;   10100101
+ &amp;amp; 00010000
+ ----------
+   00000000&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;L&amp;#8217;ensemble de l&amp;#8217;expression vaut donc &lt;code&gt;0&lt;/code&gt;. En effet, &lt;code&gt;!!(val &amp;amp; (1 &amp;lt;&amp;lt; i) = !!(0) = !(!(0)) = !(1) = 0&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;L&amp;#8217;accès aux bits d&amp;#8217;une valeur numérique devient inévitable au fur et à mesure que l&amp;#8217;on se rapproche du matériel (interprétation de la valeur d&amp;#8217;un registre de composant programamble, analyse d&amp;#8217;une trame de communication&amp;#8230;&amp;#8203;). De nombreuses techniques utilisant les opérateurs bit à bit du langage C existent (voir par exemple le fameux article : &lt;a href=&#34;https://graphics.stanford.edu/~seander/bithacks.html&#34;&gt;&#34;Bit Twiddling Hacks&#34;&lt;/a&gt;). Cependant, malgré sa simplicité apparente, l&amp;#8217;astuce vue dans ce billet m&amp;#8217;a intrigué la 1&lt;sup&gt;ière&lt;/sup&gt; fois que je l&amp;#8217;ai rencontrée. C&amp;#8217;est pour cette raison que j&amp;#8217;ai décidé de partager l&amp;#8217;analyse que j&amp;#8217;en ai faite en espérant qu&amp;#8217;elle serve à d&amp;#8217;autres.&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&#34;tableblock frame-none grid-none spread&#34;&gt;
+&lt;colgroup&gt;
+&lt;col style=&#34;width: 100%;&#34;&gt;
+&lt;/colgroup&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&#34;tableblock halign-center valign-top&#34;&gt;&lt;p class=&#34;tableblock&#34;&gt;&lt;span class=&#34;red&#34;&gt;&lt;span class=&#34;icon&#34;&gt;&lt;i class=&#34;fa fa-power-off fa-2x&#34;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
