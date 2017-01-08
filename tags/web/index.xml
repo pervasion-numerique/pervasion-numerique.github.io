@@ -69,7 +69,7 @@
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;Exemple sous Linux ou Mac OSX :&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cd ~
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cd ~
 $ hugo new site mon-site-web
 $ cd mon-site-web
 $ tree -f
@@ -88,7 +88,7 @@ $ tree -f
 &lt;p&gt;Initialiser un dépôt &lt;code&gt;git&lt;/code&gt; pour le source du site ainsi que pour sa version de production (&amp;#8592; résultat du traitement des fichiers source par &lt;code&gt;HUGO&lt;/code&gt;) qui sera présente dans le répertoire &lt;code&gt;public/&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git init
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git init
 $ git remote add origin https://github.com/VOTRE-NOM-D-UTILISATEUR/website.git
 $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISATEUR.github.io.git public&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -99,7 +99,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;title&#34;&gt;Exemple :&lt;/div&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/gcushen/hugo-academic.git themes/academic&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/gcushen/hugo-academic.git themes/academic&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -107,7 +107,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 &lt;p&gt;Copier l&amp;#8217;exemple de site fourni avec le thème dans le répertoire racine du site.&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cp -av themes/academic/exampleSite/* .&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cp -av themes/academic/exampleSite/* .&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/li&gt;
@@ -115,7 +115,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 &lt;p&gt;Démarrer le serveur web fourni par &lt;code&gt;HUGO&lt;/code&gt; pour prévisualiser le site qui sera alors consultable à l&amp;#8217;URL &lt;a href=&#34;http://localhost:1313&#34; class=&#34;bare&#34;&gt;http://localhost:1313&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo server --watch&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo server --watch&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;hr&gt;
@@ -134,7 +134,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 &lt;p&gt;Ajouter du contenu au site. Ceci revient à créer pour chaque billet un fichier texte qui contient dans l&amp;#8217;entête un ensemble de métadonnées destinées à être traitées par &lt;code&gt;HUGO&lt;/code&gt; au moment de la génération du site. Une partie de ces métadonnées peut être pré-renseignée automatiquement si on crée le fichier avec la commande &lt;code&gt;hugo new &lt;em&gt;chemin/vers/le/fichier.md&lt;/em&gt;&lt;/code&gt;.&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo new post/mon-article.md&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo new post/mon-article.md&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;admonitionblock note&#34;&gt;
@@ -166,7 +166,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 &lt;p&gt;Générer le site définitif en invoquant simplement la commande &lt;code&gt;hugo&lt;/code&gt; dans le répertoire racine du site. Ceci aura pour résultat la création d&amp;#8217;un répertoire &lt;code&gt;public/&lt;/code&gt; qui contiendra l&amp;#8217;ensemble des fichiers du site (&lt;code&gt;.html&lt;/code&gt;, &lt;code&gt;.css&lt;/code&gt;, &lt;code&gt;.js&lt;/code&gt; etc&amp;#8230;&amp;#8203;)&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ hugo
 Started building sites ...
 Built site for language en:
 0 draft content
@@ -196,7 +196,7 @@ total in 154 ms&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Déployer le site en copiant le contenu du  répertoire &lt;code&gt;public/&lt;/code&gt; sur &lt;code&gt;Github&lt;/code&gt;. Ceci se fera à l&amp;#8217;aide d&amp;#8217;une séquence de commandes qui ressemblera certainement à ce qui suit :&lt;/p&gt;
 &lt;div class=&#34;listingblock&#34;&gt;
 &lt;div class=&#34;content&#34;&gt;
-&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cd public
+&lt;pre class=&#34;highlight nowrap&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ cd public
 $ git add .
 $ git commit -m &#34;1ière version du site&#34;
 $ git push -u origin master&lt;/code&gt;&lt;/pre&gt;

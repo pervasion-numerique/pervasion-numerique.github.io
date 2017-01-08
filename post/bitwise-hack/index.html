@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/css/academicons.min.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
   <link rel="stylesheet" href="/css/hugo-academic.css">
+  
   <link rel="stylesheet" href="/css/infores-sn.css">
   
 
@@ -181,7 +182,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-c" data-lang="c">void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+<pre class="highlight"><code class="language-c" data-lang="c">void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
 {
    uint8_t i;
 
@@ -203,7 +204,7 @@
 <p>Cette fonction consiste à envoyer sur la broche <code>dataPin</code> de l&#8217;Arduino et les unes après les autres, les valeurs des 8 bits d&#8217;un octet <code>val</code> (on parle aussi de <strong>sérialisation</strong> de l&#8217;octet). L&#8217;ordre dans lequel les bits sont envoyés est déterminé par le paramètre <code>bitOrder</code> (<code>LSBFIRST</code> &#8594; bit de poids faible en 1<sup>ier</sup>). Chaque envoi de bit sur la broche <code>dataPin</code> est enfin signalé par l&#8217;émission d&#8217;une impulsion sur la broche <code>clockPin</code>.</p>
 </div>
 <div class="paragraph">
-<p>Le schéma ci-dessous illustre un cas typique d&#8217;utilisation de cette fonction dans un montage qui commande simultanément les 8 broches d&#8217;entrée d&#8217;un afficheur 7 segments en ne mobilisant que 2 broches de l&#8217;Arduino. La broche <code>dataPin</code> de l&#8217;Arduino (signal <code>SDI</code> sur le schéma) est reliée à la broche <code>DS</code> du registre à décalage référencé <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">74HC595</a> qui est utilisé ici dans le mode <em>Serial IN - Parallel OUT</em>. La broche <code>clockPin</code> (signal <code>SCLK</code> sur le schéma) est quant à elle reliée à la broche <code>SH_CP</code> de ce même composant.</p>
+<p>Le schéma ci-dessous illustre un cas typique d&#8217;utilisation de la fonction <code>shiftOut()</code> dans un montage à base d&#8217;un registre à décalage <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">74HC595</a> configuré ici en mode  <em>Serial IN - Parallel OUT</em>. Celui-ci commande simultanément les 8 broches d&#8217;entrée d&#8217;un afficheur 7 segments (signaux <code>A</code> à <code>H</code> sur le schéma) à partir des informations que l&#8217;Arduino lui fournit à travers uniquement 2 broches (<code>DS</code> pour les bits de l&#8217;octet sérialisé et <code>SH_CP</code> pour l&#8217;impulsion signalant leur mise à disposition). L&#8217;appel à un composant externe permet ainsi de libérer 6 broches sur l&#8217;Arduino pour un autre usage.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -234,7 +235,7 @@
 <p>Cette expression m&#8217;a un peu intrigué au départ car elle fait usage à la fois d&#8217;opérateurs de logique booléenne et d&#8217;opérateurs agissant sur des bits (<em>bitwise operators</em> en anglais ou &#8220;opérateurs bit à bit&#8221; en français). Le <code>!</code> correspond ainsi à la négation de l&#8217;algèbre de Boole tandis que le <code>&amp;</code> et le <code>&lt;&lt;</code> correspondent respectivement aux opérations bit à bit du ET et du décalage à gauche.</p>
 </div>
 <div class="paragraph">
-<p>Or, faire intervenir des opérateurs à ce point différents dans le cadre d&#8217;une même expression suscite toujours chez moi de la défiance.</p>
+<p>Faire intervenir des opérateurs à ce point différents dans le cadre d&#8217;une même expression doit toujours, à mon sens, susciter la défiance.</p>
 </div>
 <div class="paragraph">
 <p>Avant de décomposer cette expression sur un cas concret afin de &#8220;démontrer&#8221; le bien fondé de l&#8217;astuce, rappelons comment, au niveau du langage C, les valeurs de vérité des propositions booléennes sont déterminées :</p>
@@ -250,7 +251,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>Dnas le cadre de la démonstration, considérons que <code>val</code> contient la valeur binaire <code>10100101</code> et que la valeur décimale de <code>i</code> est <code>2</code>.</p>
+<p>Dans le cadre de la démonstration, considérons que <code>val</code> contient la valeur binaire <code>10100101</code> et que la valeur décimale de <code>i</code> est <code>2</code>.</p>
 </div>
 <div class="paragraph">
 <p>L&#8217;évaluation de <code>(1&lt;&lt;i)</code> mène à la valeur binaire <code>00000100</code> (1 décalé de 2 positions vers la gauche).</p>
@@ -303,10 +304,13 @@
 <h2 id="_conclusion">Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;accès aux bits d&#8217;une valeur numérique devient inévitable au fur et à mesure que l&#8217;on se rapproche du matériel (interprétation de la valeur d&#8217;un registre de composant programmable, analyse d&#8217;une trame de communication&#8230;&#8203;). De nombreuses techniques utilisant les opérateurs bit à bit du langage C existent (voir par exemple l&#8217;incontournable article : <a href="https://graphics.stanford.edu/~seander/bithacks.html">"Bit Twiddling Hacks"</a>). Cependant, malgré sa simplicité apparente, l&#8217;astuce vue dans ce billet m&#8217;a intrigué la 1<sup>ière</sup> fois que je l&#8217;ai rencontrée dans la mesure où son expression considérait tour à tour ses opérandes comme des valeurs numériques puis booléennes pour enfin aboutir à une valeur numérique.</p>
+<p>La manipulation de valeurs numériques au niveau du bit devient inévitable au fur et à mesure que l&#8217;on se rapproche du matériel (interprétation de la valeur d&#8217;un registre de composant programmable, analyse d&#8217;une trame de communication&#8230;&#8203;). De nombreuses techniques en langage C existent (voir par exemple <a href="https://community.embarcadero.com/article/technical-articles/149-tools/14514-bit-twiddling">&#8220;Bit Twiddling&#8221;</a> ou l&#8217;incontournable <a href="https://graphics.stanford.edu/~seander/bithacks.html">"Bit Twiddling Hacks"</a>).</p>
 </div>
 <div class="paragraph">
-<p>Dans l&#8217;éventualité où certains auraient été surpris comme moi par l&#8217;expression de cette astuce, j&#8217;espère avoir apporté une réponse satisfaisante.</p>
+<p>Malgré sa simplicité apparente, l&#8217;astuce vue dans ce billet m&#8217;a intrigué la 1<sup>ière</sup> fois que je l&#8217;ai rencontrée dans la mesure où son expression considérait tour à tour ses opérandes comme des valeurs numériques puis booléennes pour enfin aboutir à une valeur numérique.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;éventualité où certains se seraient posés la même question que moi face à l&#8217;expression en langage C de cette technique de manipulation de bits, j&#8217;espère leur avoir apporté une explication satisfaisante.</p>
 </div>
 <table class="tableblock frame-none grid-none spread">
 <colgroup>

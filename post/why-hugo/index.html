@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/css/academicons.min.css">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono">
   <link rel="stylesheet" href="/css/hugo-academic.css">
+  
   <link rel="stylesheet" href="/css/infores-sn.css">
   
 
@@ -221,7 +222,7 @@
 <div class="listingblock">
 <div class="title">Exemple sous Linux ou Mac OSX :</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cd ~
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cd ~
 $ hugo new site mon-site-web
 $ cd mon-site-web
 $ tree -f
@@ -240,7 +241,7 @@ $ tree -f
 <p>Initialiser un dépôt <code>git</code> pour le source du site ainsi que pour sa version de production (&#8592; résultat du traitement des fichiers source par <code>HUGO</code>) qui sera présente dans le répertoire <code>public/</code></p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ git init
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ git init
 $ git remote add origin https://github.com/VOTRE-NOM-D-UTILISATEUR/website.git
 $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISATEUR.github.io.git public</code></pre>
 </div>
@@ -251,7 +252,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 <div class="listingblock">
 <div class="title">Exemple :</div>
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ git clone https://github.com/gcushen/hugo-academic.git themes/academic</code></pre>
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ git clone https://github.com/gcushen/hugo-academic.git themes/academic</code></pre>
 </div>
 </div>
 </li>
@@ -259,7 +260,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 <p>Copier l&#8217;exemple de site fourni avec le thème dans le répertoire racine du site.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cp -av themes/academic/exampleSite/* .</code></pre>
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cp -av themes/academic/exampleSite/* .</code></pre>
 </div>
 </div>
 </li>
@@ -267,7 +268,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 <p>Démarrer le serveur web fourni par <code>HUGO</code> pour prévisualiser le site qui sera alors consultable à l&#8217;URL <a href="http://localhost:1313" class="bare">http://localhost:1313</a>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ hugo server --watch</code></pre>
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo server --watch</code></pre>
 </div>
 </div>
 <hr>
@@ -286,7 +287,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 <p>Ajouter du contenu au site. Ceci revient à créer pour chaque billet un fichier texte qui contient dans l&#8217;entête un ensemble de métadonnées destinées à être traitées par <code>HUGO</code> au moment de la génération du site. Une partie de ces métadonnées peut être pré-renseignée automatiquement si on crée le fichier avec la commande <code>hugo new <em>chemin/vers/le/fichier.md</em></code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ hugo new post/mon-article.md</code></pre>
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo new post/mon-article.md</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -318,7 +319,7 @@ $ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILI
 <p>Générer le site définitif en invoquant simplement la commande <code>hugo</code> dans le répertoire racine du site. Ceci aura pour résultat la création d&#8217;un répertoire <code>public/</code> qui contiendra l&#8217;ensemble des fichiers du site (<code>.html</code>, <code>.css</code>, <code>.js</code> etc&#8230;&#8203;)</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ hugo
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo
 Started building sites ...
 Built site for language en:
 0 draft content
@@ -348,7 +349,7 @@ total in 154 ms</code></pre>
 <p>Déployer le site en copiant le contenu du  répertoire <code>public/</code> sur <code>Github</code>. Ceci se fera à l&#8217;aide d&#8217;une séquence de commandes qui ressemblera certainement à ce qui suit :</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ cd public
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cd public
 $ git add .
 $ git commit -m "1ière version du site"
 $ git push -u origin master</code></pre>
