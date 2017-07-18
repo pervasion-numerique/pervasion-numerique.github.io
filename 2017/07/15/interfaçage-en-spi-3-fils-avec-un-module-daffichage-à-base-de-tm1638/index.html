@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638  &middot; </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="SPI, STM32, TM1638, Espruino, ">
+
+
+<meta property="og:title" content="Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638  &middot;  ">
+<meta property="og:site_name" content=""/>
+<meta property="og:url" content="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/" />
+<meta property="og:locale" content="fr-fr">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-07-15T18:35:40&#43;02:00" />
+<meta property="og:article:modified_time" content="2017-07-15T18:35:40&#43;02:00" />
+
+  
+    
+<meta property="og:article:tag" content="SPI">
+    
+<meta property="og:article:tag" content="STM32">
+    
+<meta property="og:article:tag" content="TM1638">
+    
+<meta property="og:article:tag" content="Espruino">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2017-07-15",
+    "description": "",
+    "wordCount": 3591
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.25.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="/css/bootswatch/default/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/asciidoctor.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="stylesheet" href="/css/style_custom.css">
+
+
+
+  <link rel="stylesheet" href="/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:default]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="{Pervasion} numérique" src="/img/logo.png">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="/about/" >
+                
+                À propos...
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-07-15">15 Jul, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Estimation du temps de lecture : 17 min
+  &middot; (3591 mots)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638&amp;url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f&amp;title=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638&amp;body=Check out this site %2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="/tags/spi" class="label label-primary">SPI</a>
+  
+  <a href="/tags/stm32" class="label label-primary">STM32</a>
+  
+  <a href="/tags/tm1638" class="label label-primary">TM1638</a>
+  
+  <a href="/tags/espruino" class="label label-primary">Espruino</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <div class="paragraph">
+<p>Ce billet résume le cheminement que j&#8217;ai suivi pour parvenir à interfacer une carte d&#8217;évaluation STM32F4 Discovery avec un module d&#8217;affichage généraliste référencé JY-LKM1638.</p>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="sect1">
+<h2 id="_présentation_des_constituants">Présentation des constituants</h2>
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/stm32_f4_discovery.jpg"><img src="/img/20170715/stm32_f4_discovery.jpg" alt="stm32 f4 discovery" width="320"></a>
+</div>
+<div class="title">Figure 1. STM32F4 Discovery</div>
+</div>
+<div class="paragraph">
+<p>La <a href="http://www.st.com/en/evaluation-tools/stm32f4discovery.html">carte STM32F4 Discovery</a>, fabriquée par STMicroElectronics, est une carte d&#8217;évaluation pour le microcontôleur STM32F407VG architecturé autour d&#8217;un cœur ARM Cortex-M4 32bits cadencé à 168MHz.</p>
+</div>
+<div class="paragraph">
+<p>Elle embarque :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1Mo de mémoire Flash</p>
+</li>
+<li>
+<p>192ko de mémoire vive (RAM)</p>
+</li>
+<li>
+<p>un programmateur/debogueur de type STLINKV2</p>
+</li>
+<li>
+<p>4 DELs + 1 bouton poussoir libres d&#8217;utilisation</p>
+</li>
+<li>
+<p>2 MEMs (accélèromètre 3 axes, micro omni-directionnel + DAC audio)</p>
+</li>
+<li>
+<p>2 connecteurs 54 broches donnant accès à une majorité des broches du microcontrôleur</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Outre ses caractéristiques intéressantes et son prix modique (un peu moins de 20€), cette carte est supportée par le <a href="https://www.espruino.com">projet Espruino</a>. Celui-ci vise à fournir un environnement de développement relativement simple de type Arduino mais, contrairement à ce dernier, la programmation se fait en Javascript.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est d&#8217;ailleurs cette dernière fonctionnalité, dans le cadre de mon initiation à ce langage, qui m&#8217;a fait ressortir la carte STM32F4 Discovery acquise il y a plusieurs années maintenant mais pas vraiment exploitée jusqu&#8217;à présent.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Alimentation de la carte</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Celle-ci se fait à travers la partie programmateur de la carte à laquelles on accède via le connecteur mini-USB (CN1). Le connecteur micro-USB (CN5) sert uniquement à la communication entre l&#8217;IDE et le microcontrôleur STM32F407VG une fois le firmware d&#8217;Espruino flashé.</p>
+<div class="paragraph">
+<p>Pour limiter le nombre de câbles, il est possible d&#8217;alimenter la carte via CN5 après un petit <em>hack</em> qui consiste à relier les broches <code>PA9</code> et <code>5V</code> du connecteur P2 [<a href="https://github.com/micropython/micropython/wiki/Board-STM32F407-Discovery">Source</a>].</p>
+</div>
+</li>
+<li>
+<p>L&#8217;alimentation de la partie de la carte assignée au microcontrôleur STM32F407VG se fait à travers un régulateur 3V, ce qui est plutôt inhabituel (5V ou 3V3 sont souvent la norme).</p>
+<div class="paragraph">
+<p>Ceci aura pour conséquence que toutes les broches d&#8217;E/S disponibles sur les connecteurs P1 et P2 délivreront/nécessiteront ce même niveau 3V lorsqu&#8217;elles sont au niveau 1 logique.</p>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/jy_lkm1638.jpg"><img src="/img/20170715/jy_lkm1638.jpg" alt="jy lkm1638" width="320"></a>
+</div>
+<div class="title">Figure 2. Module JY-LKM1638</div>
+</div>
+<div class="paragraph">
+<p>Le module JY-LKM1638 est un module d&#8217;affichage généraliste bon marché (env. 7€) dont le fonctionnement repose sur l&#8217;utilisation d&#8217;un seul contrôleur référencé TM1638 qui est capable de gérer sur cette carte:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>8 afficheurs 7 segments</p>
+</li>
+<li>
+<p>8 DELs bicolores (vert/rouge)</p>
+</li>
+<li>
+<p>8 boutons poussoirs</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>L&#8217;ensemble de ces éléments regroupés sur un seule carte <em>breakout</em> rend le module JY-LKM1638 très attractif dès lors qu&#8217;on désire recourir à une interface homme-machine simple mais qui offre malgré tout bon nombre de possibilités :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>simulation d&#8217;entrées &#8220;Tout ou Rien&#8221; avec les boutons poussoirs,</p>
+</li>
+<li>
+<p>visualisation d&#8217;informations 2 ou 3 états avec les DELs (éteint/vert/rouge),</p>
+</li>
+<li>
+<p>visualisation de données sur 8 digits grâce aux afficheurs 7 segments.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cerise sur le gâteau, l&#8217;interfaçage avec ce module nécessite <strong>seulement 3 fils</strong> (en dehors des 2 fils d&#8217;alimentation). Ceci autorise donc son utilisation avec des microcontrôleurs disposant de peu de broches d&#8217;E/S.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_le_challenge_de_l_interfaçage">Le &#8220;challenge&#8221; de l&#8217;interfaçage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les valeurs que doivent prendre les 3 signaux d&#8217;interface pour communiquer avec le module JY-LKM1638 rappellent le fonctionnement d&#8217;un bus SPI même si ceci n&#8217;est pas mentionné dans la <a href="https://docs.google.com/file/d/0B84N2SrJaybwZTgxYjM4ZmEtY2EyZi00YjVjLWIzOTctYTlhMjJkM2MxMTBl/edit"><em>datasheet</em> du composant TM1638</a> qui est, au passage, d&#8217;une qualité médiocre.</p>
+</div>
+<div class="paragraph">
+<p>Les 3 broches de l&#8217;interface sont :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>CLK : entrée d&#8217;horloge qui cadence les échanges,</p>
+</li>
+<li>
+<p>DIO : entrée/sortie sur laquelle ont lieu les échanges <strong>bi-directionnels</strong> de données,</p>
+</li>
+<li>
+<p>STB : entrée d&#8217;activation qui doit rester à l&#8217;état bas durant les échanges pour que ceux-ci soient pris en compte par le composant.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Au niveau de la carte STM32F4 Discovery, 3 &#8220;vraies&#8221; liaisons SPI (comprendre : prises en charge par du matériel) sont disponibles. Chacune d&#8217;elle dispose donc, en plus de la broche d&#8217;horloge SCLK, de 2 broches distinctes, MOSI (<em>Master Out, Slave In</em>) et MISO (<em>Master In, Slave Out</em>), pour respectivement envoyer et recevoir les données.</p>
+</div>
+<div class="paragraph">
+<p>Dans un 1<sup>er</sup> temps, j&#8217;ai cherché uniquement à savoir s&#8217;il était possible de piloter les DELs et les afficheurs 7 segments à travers la seule broche de donnée MOSI d&#8217;un bus SPI matériel. En effet, des librairies prenant en charge ce module existent déjà (cf. <a href="https://github.com/rjbatista/tm1638-library"><code>TM1638-library</code> de Ricardo Batista pour Arduino</a> ou <a href="https://github.com/mjoldfield/pi-tm1638"><code>pi-tm1638</code> de M.J. Oldfield</a>) mais elles implémentent entièrement le protocole par logiciel (technique du <em>bit banging</em>).</p>
+</div>
+<div class="paragraph">
+<p>Ensuite, j&#8217;ai appris sur internet l&#8217;existence d&#8217;un bus sur 3 fils nommé <em>3-Wire SPI</em> avec broche de données bi-directionnelle et dont le nom laisse à penser qu&#8217;il est à priori compatible avec la spécification du bus SPI. L&#8217;interfaçage entre ce bus à 3 fils et un bus SPI traditionnel à 4 fils semble <strong>parfois</strong> possible <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> moyennant une minuscule adaptation hardware. Les échanges se font alors uniquement en <em>half duplex</em>.</p>
+</div>
+<div class="paragraph">
+<p>J&#8217;ai donc voulu savoir dans un 2<sup>ème</sup> temps s&#8217;il était possible d&#8217;avoir un support complet du module JY-LKM1638 via le bus SPI matériel de la carte STM32F4 Discovery en ajoutant la lecture de l&#8217;état des boutons poussoirs au pilotage des DELS et afficheurs 7 segments.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_sup_ère_sup_étape_commande_des_dels_et_afficheurs_7_segments">1<sup>ère</sup> étape : Commande des DELs et afficheurs 7 segments.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ici, on va se contenter de transmettre des données au module JY-LKM1638 et par conséquent exploiter le bus SPI de la carte STM32F4 Discovery uniquement en sortie. On ne câblera donc que les broches MOSI et SCLK du bus SPI en plus de la broche d&#8217;activation nommée parfois SS (<em>Slave Select</em>).</p>
+</div>
+<div class="paragraph">
+<p>La seule vraie difficulté rencontrée ici a été de comprendre le fonctionnement du TM1638 à partir de la datasheet de façon à élaborer les trames a lui envoyer pour l&#8217;initialiser et piloter les DELs ainsi que les afficheurs 7 segments.</p>
+</div>
+<div class="paragraph">
+<p>Le câblage choisi pour relier la carte à microcontrôleur et le module d&#8217;affichage figure ci-dessous :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top">broche STM32F4</th>
+<th class="tableblock halign-center valign-top">broche JY-LKM1638</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">PA5 (SPI1 SCK)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">CLK</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">PA7 (SPI1 MOSI)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">DIO</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">PE4 (GPIO utilisée en tant que signal SS)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">STB0 <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3V</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">VCC <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">GND</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">GND</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Une attention particulière a du être portée à la configuration logicielle du bus SPI afin d&#8217;obtenir un fonctionnement en adéquation avec ce qu&#8217;attend le TM1638.</p>
+</div>
+<div class="paragraph">
+<p>La datasheet annonce pour la broche DIO :</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>This pin outputs serial data at the falling edge of the shift clock. <strong>This pin inputs serial data at the rising edge of the shift clock (starting from the lower bit)</strong> (N-Channel, open-drain).</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; datasheet TM1638
+</div>
+</div>
+<div class="paragraph">
+<p>On apprend ainsi que :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>le TM1638 évalue la valeur d&#8217;un bit sur le front montant de l&#8217;horloge,</p>
+</li>
+<li>
+<p>le bit de poids faible de la donnée doit être transmis en premier,</p>
+</li>
+<li>
+<p>l&#8217;étage de sortie de cette broche est de type <strong>collecteur ouvert</strong> (&#8594; ceci aura son importance par la suite).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La broche d&#8217;activation STB est, je le rappelle, active à l&#8217;état bas ce qui est conforme à la spécificatiopn SPI pour le signal SS.</p>
+</div>
+<div class="paragraph">
+<p>Le code pour initialiser le bus SPI dans l&#8217;environnement Espruino se résume donc à :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">// Utiliser la broche E4 de la carte STM32F4 en guise de signal SS
+const SS = E4;
+
+// Configurer la broche SS en sortie
+pinMode(SS, "output");
+
+// Configurer le bus SPI en accord avec ce qu'attend le TM1638
+SPI1.setup({sck: A5, miso: A6, mosi: A7, mode: 0, order: 'lsb'});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Les points importants sont les valeurs des paramètres <code>order</code> et <code>mode</code> de la méthode <code>setup()</code> qui spécifient pour l&#8217;un la transmission des octets avec le bit de poids faible en premier et pour l&#8217;autre le mode du fonctionnement du bus SPI. Le bus SPI propose effectivement 4 modes de fonctionnements en rapport avec la &#8220;polarité et la phase de l&#8217;horloge&#8221;. Le mode 0 indique simplement qu&#8217;à l&#8217;état repos, l&#8217;horloge est à 0 et que la donnée est échantillonnée sur le front montant de celle-ci (donc conforme à ce qu&#8217;attend le TM1638).</p>
+</div>
+<div class="paragraph">
+<p>Il ne reste alors plus qu&#8217;à coder un petit programme pour tester le fonctionnement :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">/**
+ * Envoi d'un octet sur le bus SPI
+ */
+function sendCommand( byte ) {
+  SPI1.send(byte, SS);
+}
+
+/**
+ * Initialisation du module à base de TM1638
+ */
+function resetModule() {
+  // Passer en mode d'adresse auto-incrémentée
+  sendCommand(0x40);
+
+  // Effacer les 16 adresses de la mémoire d'affichage
+  digitalWrite(SS, LOW);
+  for(let i = 0; i &lt; 16; i++) {
+    SPI1.send(0x00);
+  }
+  digitalWrite(SS, HIGH);
+
+  // Passer en mode d'adressage fixe
+  sendCommand(0x44);
+}
+
+/**
+ * Allume un digit.
+ * Le digit est spécifié par son rang ([0=le plus à gauche,7=le plus à droite])
+ * La valeur du digit est un nombre entre 0 et 15 dont le symbole hexa
+ * ('0'...'F') sera affiché
+ */
+function setDigit(row, value) {
+  // Table de correspondance chiffre &lt;-&gt; motif pour afficheur 7 segments
+  const patterns = [
+    // dp, g, f, e, d, c, b, a
+    0b00111111, // '0'
+    0b00000110, // '1'
+    0b01011011, // '2'
+    0b01001111, // '3'
+    0b01100110, // '4'
+    0b01101101, // '5'
+    0b01111101, // '6'
+    0b00000111, // '7'
+    0b01111111, // '8'
+    0b01101111, // '9'
+    0b01110111, // 'A'
+    0b01111100, // 'b'
+    0b00111001, // 'C'
+    0b01011110, // 'd'
+    0b01111001, // 'E'
+    0b01110001  // 'F'
+  ];
+
+  SPI1.send([0xc0|((2*row)%16), patterns[ value ]], SS);
+}
+
+/**
+ * Allume une DEL en rouge ou en vert ou l'éteint.
+ * La DEL est spécifiée par son rang ([0=la plus à gauche,7=la plus à droite])
+ */
+function setLed(position, color) {
+  const colors = {
+    'BLANK' : 0b00000000
+    , 'RED' : 0b00000001
+    , 'GREEN' : 0b00000010
+  };
+
+  SPI1.send([0xc0|((2*position+1)%16), colors[color]], SS);
+}
+
+/*&gt;&gt;&gt;&gt; Point d'entrée du programme &lt;&lt;&lt;&lt;*/
+
+// Utiliser la broche PE4 de la carte STM32F4 en guise de signal SS
+const SS = E4;
+
+// Configurer la broche SS en sortie
+pinMode(SS, "output");
+
+// Configurer le bus SPI en accord avec ce qu'attend le TM1638
+SPI1.setup({sck: A5, miso: A6, mosi: A7, mode: 0, order: 'lsb'});
+
+// Initialiser le module TM1638
+resetModule();
+
+// Activer l'affichage et Fixer la luminosité à moitié
+sendCommand(0x80 | 0x08 | 0x07);
+
+// Afficher les chiffres 0 à 7 sur les afficheurs 7 segments et
+// allumer alternativement les DELs en rouge et en vert
+for( let i = 0; i &lt; 8; i++) {
+  setDigit(i, i);
+  setLed(i, (i%2) ? 'GREEN' : 'RED');
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Voilà ce que l&#8217;on obtient sur l&#8217;afficheur suite à l&#8217;exécution de ce programme :</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/test_display.jpg"><img src="/img/20170715/test_display.jpg" alt="test display" width="640"></a>
+</div>
+<div class="title">Figure 3. Résultat d&#8217;exécution du programme de test des afficheurs</div>
+</div>
+<div class="paragraph">
+<p>Pour finir sur cette étape, vous trouverez ci-dessous une capture de la trame envoyée pour afficher le &#8217;5&#8217; sur le 6ème afficheur. Elle consiste en un 1<sup>er</sup> octet de valeur 0xca dont les quartets de poids fort et poids faible correspondent respectivement à la commande d&#8217;écriture dans la mémoire d&#8217;affichage (&#8594; 0x[c]0) puis à l&#8217;adresse du 6ème afficheur (&#8594; 0x05*2=0x0[a]) suivi par un 2<sup>ème</sup> octet spécifiant le motif associé au '5' (&#8594; 0b01101101=0x6d).</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/saelae_tm1638_set_digit.png"><img src="/img/20170715/saelae_tm1638_set_digit.png" alt="saelae tm1638 set digit" width="640"></a>
+</div>
+<div class="title">Figure 4. trame SPI de commande d&#8217;un afficheur 7 segments</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Ne pas oublier lors de l&#8217;interprétation de la trame que les octets sont envoyés avec le bit de poids faible en premier.</p>
+<div class="paragraph">
+<p>Dans la capture, les valeurs d&#8217;octets sont correctement affichées car l&#8217;analyseur a été configuré en conséquence.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/saelae_tm1638_spi_settings.png"><img src="/img/20170715/saelae_tm1638_spi_settings.png" alt="saelae tm1638 spi settings" width="320"></a>
+</div>
+<div class="title">Figure 5. Configuration analyseur SPI</div>
+</div>
+</li>
+<li>
+<p>On notera que, par défaut, Espruino configure l&#8217;horloge SPI à une centaine de kiloHertz (164.4kHz). Ceci est compatible avec le TM1638 dont la fréquence maximum pour le signal SCK est donnée pour 1MHz.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_sup_ème_sup_étape_contrôle_des_boutons_poussoirs">2<sup>ème</sup> étape : Contrôle des boutons poussoirs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lorsque je suis arrivé à faire fonctionner les afficheurs du  module JY-LKM1638, je pensais ne pas pouvoir aller plus loin et donc être capable de lire les boutons poussoirs étant donné qu&#8217;il me semblait impossible d&#8217;interfacer le module JY-LKM1638 avec les broches MOSI et MISO sans avoir recours à une électronique externe.</p>
+</div>
+<div class="paragraph">
+<p>En effet, reproduire l&#8217;étape précédente en ne branchant cette fois-ci que la broche MISO n&#8217;aurait pas fonctionné car il est toujours nécessaire d&#8217;envoyer des trames au module ne serait-ce que pour l&#8217;initialiser.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est alors qu&#8217;en naviguant sur le web, j&#8217;ai trouvé des évocations d&#8217;un bus 3 fils nommé <em>3-Wire SPI</em> interfaçable dans certaines conditions avec un bus SPI traditionnel à 4 fils.</p>
+</div>
+<div class="paragraph">
+<p>Le fil de discussion <a href="http://www.edaboard.com/showthread.php?t=364665">SPI 3 wire communication using PIC</a> sur le forum edaboard.com présente un schéma d&#8217;interface qui ne fait intervenir qu&#8217;une simple résistance de 10kΩ, ce qui reste encore un câblage à ma portée&#8230;&#8203; <span class="icon"><i class="fa fa-smile-o"></i></span>.</p>
+</div>
+<div class="paragraph">
+<p>(La valeur de la résistance n&#8217;apparaît pas sur le schéma mais elle est évoquée dans le fil de discussion)</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/edaboard.png"><img src="/img/20170715/edaboard.png" alt="edaboard" width="640"></a>
+</div>
+<div class="title">Figure 6. Schéma d&#8217;interface proposé sur le forum de edaboard.com</div>
+</div>
+<div class="paragraph">
+<p>Je suis donc aller en quête d&#8217;une résistance de 10kΩ et d&#8217;un petit connecteur 2 points pour m&#8217;éviter de souder directement la résistance sur les broches MOSI et MISO de la carte STM32F4 qui se trouvent justement être l&#8217;une à côté de l&#8217;autre.</p>
+</div>
+<div class="paragraph">
+<p>J&#8217;ai ensuite positionné la résistance comme indiquée sur le schéma et j&#8217;ai relancé sans conviction mon programme de test des afficheurs. Bien entendu, cela n&#8217;a pas fonctionné&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Cependant, au lieu de ne rien voir sur le module JY-LKM1638, celui-ci brillait au contraire &#8220;de tous ses feux&#8221; en affichant des &#8216;8&#8217; sur tous les afficheurs 7 segments et en allumant toutes les DELs en rouge. Ce comportement prouvait au moins que celui-ci réagissait toujours aux commandes et n&#8217;était donc pas endommagé. Ouf !!</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est alors que je me suis demandé quel était le rôle de la résistance de 10kΩ et si sa valeur était bien adaptée à mon montage. Il est vrai, qu&#8217;en principe, j&#8217;aurais dû me poser la question avant de mettre sous tension le montage après ajout de la résistance mais j&#8217;ai parfois tendance à être impatient ! Il n&#8217;est peut-être pas inutile de préciser que c&#8217;est un trait de caractère qui fait rarement bon ménage avec ce genre de montage qui n&#8217;est pas trop tolérant aux fautes et qu&#8217;il vaut mieux le vérifier à plusieurs reprises avant de les mettre sous tension.</p>
+</div>
+<div class="paragraph">
+<p>Après recherche, la résistance agit comme une protection pour la sortie MOSI dans le cas d&#8217;un conflit de bus. En effet, si la broche DIO du TM1638 impose un niveau 0 en sortie et, qu&#8217;en même temps, MOSI impose un niveau 1 alors qu&#8217;elle a été configurée en tant que broche de type &#8220;Push Pull&#8221; (ce qui est d&#8217;ailleurs le cas lors de l&#8217;utilisation du SPI matériel avec Espruino), on obtient un court-circuit. Le schéma ci-dessous tente d&#8217;illustrer cela en reprenant la structure des E/S du microcontrôleur STM32F407VG et en schématisant la sortie collecteur ouvert du TM1638 (la résistance de rappel de 10kΩ est câblée sur le module <em>breakout</em> comme le montre <a href="/img/20170715/jy_lkm1638_schematic.jpg" target="_blank">son schéma structurel</a>).</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/shortcircuit.png"><img src="/img/20170715/shortcircuit.png" alt="shortcircuit" width="640"></a>
+</div>
+<div class="title">Figure 7. Illustration du court circuit quand aucune résistance ne protège la sortie MOSI</div>
+</div>
+<div class="paragraph">
+<p>Cependant, avec ce même schéma et en considérant qu&#8217;une résistance de 10kΩ ait été ajoutée sur la ligne MOSI, on s&#8217;aperçoit aussi que, si MOSI impose du 0V et que DIO n&#8217;est pas commandée, on est en présence d&#8217;un pont diviseur équilibré qui mène à l&#8217;obtention sur DIO d&#8217;une tension qui vaut 3V * 10kΩ/(10kΩ + 10kΩ) = 3V/2 = 0,5 Vdd. Or, ce niveau de tension n&#8217;est ni un 0 ni un 1 pour le TM1638.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/max_ratings.png"><img src="/img/20170715/max_ratings.png" alt="max ratings" width="640"></a>
+</div>
+<div class="title">Figure 8. Valeurs minimales/maximales de tension pour les entrées du TM1638</div>
+</div>
+<div class="paragraph">
+<p>Ceci expliquait donc sûrement le comportement anormal du module JY-LKM1638 après l&#8217;ajout de la résistance de 10kΩ.</p>
+</div>
+<div class="paragraph">
+<p>Il ne restait plus qu&#8217;à ajuster la valeur de cette résistance pour garantir d&#8217;une part une protection en courant pour la broche MOSI du STM32F407VG et d&#8217;autre part un niveau de tension compatible avec celui attendu par le TM1638 pour un niveau logique &#8216;0&#8217;.</p>
+</div>
+<div class="paragraph">
+<p>Dans la <a href="http://www.st.com/content/ccc/resource/technical/document/datasheet/ef/92/76/6d/bb/c2/4f/f7/DM00037051.pdf/files/DM00037051.pdf/jcr:content/translations/en.DM00037051.pdf">datasheet du STM32F407 (édition 8)</a>, on trouve à la page 106 :</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Output driving current</p>
+</div>
+<div class="paragraph">
+<p>The GPIOs (general purpose input/outputs) can <strong>sink or source up to ±8 mA</strong>, and sink or source up to ±20 mA (with a relaxed VOL/VOH) except PC13, PC14 and PC15 which can sink or source up to ±3mA. When using the PC13 to PC15 GPIOs in output mode, the speed should not exceed 2 MHz with a maximum load of 30 pF.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>On comprend donc qu&#8217;une sortie peut dans tous les cas fournir/absorber jusqu&#8217;à 8mA. La valeur de la résistance à placer en série pour garantir la protection doit donc être supérieure à 3V/8mA = 375Ω.</p>
+</div>
+<div class="paragraph">
+<p>Dans mon lot de résistances, celle dont la valeur se rapprochait le plus de cette valeur était une 820Ω. La protection de la sortie MOSI était donc assurée.</p>
+</div>
+<div class="paragraph">
+<p>Il ne restait plus qu&#8217;à vérifier que le niveau tension délivrée sur DIO lorsque MOSI était au &#8216;0&#8217; logique convenait :</p>
+</div>
+<div class="paragraph">
+<p>3V * 820Ω/(10kΩ + 820Ω) = 3V * 0,075 = 0,075.Vdd</p>
+</div>
+<div class="paragraph">
+<p>Ceci est donc bien inférieur au 0,3.Vdd requis par le TM1638.</p>
+</div>
+<div class="paragraph">
+<p>Après mise en place de cette nouvelle résistance, mon programme de test de l&#8217;étape n°1 s&#8217;est remis à s&#8217;exécuter correctement. Il ne restait plus alors qu&#8217;à modifer le programme initial pour tester la lecture des boutons poussoir.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">//
+//[...] (Code source des fonctions du 1er programme non reproduit pour gain de place)
+//
+
+/**
+ * Retourne l'état d'un bouton poussoir [false=relâché, true=enfoncé].
+ * Le bouton poussoir est spécifié par son rang ([0=le plus à gauche
+ * ,7=le plus à droite])
+ */
+function getButton(row) {
+  mask = ((row%8)&lt;4) ? 0x01 : 0x10;
+  var btn = SPI1.send([0x42, 0xff, 0xff, 0xff, 0xff], SS);
+  return (btn[(row%4)+1] &amp; mask) ? true : false;
+}
+
+/*&gt;&gt;&gt;&gt; Point d'entrée du programme &lt;&lt;&lt;&lt;*/
+
+// Utiliser la broche PE4 de la carte STM32F4 en guise de signal SS
+const SS = E4;
+
+// Configurer la broche SS en sortie
+pinMode(SS, "output");
+
+// Configurer le bus SPI en accord avec ce qu'attend le TM1638
+SPI1.setup({sck: A5, miso: A6, mosi: A7, mode: 0, order: 'lsb'});
+
+// Initialiser le module TM1638
+resetModule();
+
+// Activer l'affichage et Fixer la luminosité à moitié
+sendCommand(0x80 | 0x08 | 0x02);
+
+// Scanner l'état des boutons poussoir toutes les 100ms et afficher la combinaison
+// binaire correspondante aux boutons poussoirs enfoncés sur les afficheurs 7 segments
+setInterval(function() {
+  for( let i = 0; i &lt; 8; i++) {
+    if( getButton(i) ) {
+      setLed(i, 'GREEN');
+      setDigit(i, 1);
+    } else {
+      setLed(i, 'BLANK');
+      setDigit(i, 0);
+    }
+  }
+}, 100);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dans la fonction <code>getButton()</code> et conformément au fonctionnement du bus SPI qui se base sur des registres à décalage, on voit que pour obtenir les 4 octets d&#8217;état des boutons poussoirs retournés par le TM1638, il faut non seulement lui envoyer la commande 0x42 mais aussi 4 octets qui lui permettront de &#8220;pousser&#8221; sur le bus les valeurs qu&#8217;il doit communiquer en réponse à cette commande. Il est important que ces octets aient la valeur 0xff donc soient &#8220;remplis de 1&#8221;. En effet, de part la nature de l&#8217;étage de sortie de la broche DIO du TM1638, ce dernier n&#8217;est capable que de forcer un niveau à 0. Le fait de placer sur la ligne partagée par MOSI et MISO uniquement des niveaux logiques &#8216;1&#8217; respecte donc cette contrainte.</p>
+</div>
+<div class="paragraph">
+<p>En accord avec ce que précise la <em>datasheet</em> du TM1638, on devrait donc obtenir sur le front descendant de l&#8217;horloge soit un bit à 0 quand le bouton poussoir associé est relâché soit un 1 quand celui-ci est enfoncé. Il faut quand même préciser que ceci ne concerne que le bit de poids faible de chacun des 8 quartets des 4 octets retournés (8 bits au total) car seul celui-ci code l&#8217;état d&#8217;un bouton poussoir. Les autres bits seront toujours codés en tant que &#8216;0&#8217; logique.</p>
+</div>
+<div class="paragraph">
+<p>La vidéo ci-dessous montre le fonctionnement du programme :</p>
+</div>
+<div class="videoblock">
+<div class="content">
+<iframe width="640" height="480" src="https://player.vimeo.com/video/225465892" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>La capture de trame suivante vérifie ce qui est dit dans la <em>datasheet</em>, à savoir le fait que le TM1638 présente ses données sur le bus sur le front descendant de l&#8217;horloge.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170715/saelae_tm1638_read_key.png"><img src="/img/20170715/saelae_tm1638_read_key.png" alt="saelae tm1638 read key" width="640"></a>
+</div>
+<div class="title">Figure 9. trame SPI de lecture des boutons poussoir</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>L&#8217;envoi des octets 0x01 (0b00000001), 0x010 (0b00010000), 0x11 (0b00010001) et 0x00 (0b00000000) indique, dans cet ordre, que les boutons poussoirs 0, 5, 2 et 6 sont enfoncés. En effet, l&#8217;octet 0 code de droite à gauche les boutons poussoirs 0 et 4; l&#8217;octet 1 code les boutons poussoirs 1 et 5 etc&#8230;&#8203;</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A travers la mise en œuvre du module JY-LKM1638 depuis une carte STM32F4 Discovery, le sujet principal de ce billet était finalement l&#8217;interfaçage entre composants d&#8217;une part au niveau du protocole et d&#8217;autre part au niveau du signal.On a montré dans ce cadre qu&#8217;il était possible de relier des broches dont les étages de sortie sont de type différent (<em>push-pull</em> vs. <em>open drain</em>) moyennant une lecture attentive des <em>datasheet</em> et &#8230;&#8203; une part de chance pour tomber sur les bons forums de discussion !</p>
+</div>
+<div class="paragraph">
+<p>La connexion simultanée d'1 entrée et d'1 sortie sur une broche bi-directionnelle à travers l&#8217;utilisation d&#8217;une simple résistance m&#8217;a quand même rendu perplexe au départ mais force est de constater que ça marche. Cependant, vu la piètre qualité de la <em>datasheet</em> du TM1638, je n&#8217;arrive pas à déterminer pas s&#8217;il a été conçu pour fonctionner avec un bus SPI traditionnel ou si c&#8217;est simplement le fruit du hasard.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;environnement Espruino s&#8217;est révélé très pratique au cours de mon expérimentation dans la mesure où celui-ci met à disposition une ligne de commande depuis son IDE qui se trouve être une application Google Chrome (donc multiplateforme). J&#8217;ai donc pu expérimenter via un terminal les différentes méthodes de son API avant de les intégrer dans des programmes.</p>
+</div>
+<div class="paragraph">
+<p>Le déploiement des programmes sur la cible est de surcroît très rapide dans la mesure où ceux-ci sont chargés en RAM et non en Flash comme sur Arduino. Il est cependant possible de les flasher (fonction  <code>save()</code> combinée à l&#8217;évènement <code>E.init</code>) de manière à les exécuter dès la mise sous tension de la carte.</p>
+</div>
+<div class="paragraph">
+<p>Même si on considère souvent que seul le résultat compte, j&#8217;espère que vous aurez trouvé malgré tout un intérêt à suivre mon cheminement pour arriver à contrôler le module JY_LKM1638 depuis la carte STM32F4 Discovery.</p>
+</div>
+<table class="tableblock frame-none grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="red"><span class="icon"><i class="fa fa-power-off fa-2x"></i></span></span></th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. voir les condition dans l&#8217;article <a href="https://ba0sh1.com/blog/2014/05/31/howto-use-stm32-spi-half-duplex-mode/">HOWTO: Use STM32 SPI half duplex mode</a>
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. jusqu&#8217;à 6 modules JY-LKM1638 peuvent être chainés d&#8217;où la présence des broches de sélection STB0 à STB5 sur le connecteur.
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. L&#8217;alimentation doit normalement se faire en 5V mais le 3V fourni par la carte STM32F4 semble convenir et offre l&#8217;avantage d&#8217;être en accord avec la tension des signaux du microcontrôleur.
+</div>
+</div>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638&amp;url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f&amp;title=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Interfa%c3%a7age%20en%20SPI%203-fils%20avec%20un%20module%20d%27affichage%20%c3%a0%20base%20de%20TM1638&amp;body=Check out this site %2f2017%2f07%2f15%2finterfa%25C3%25A7age-en-spi-3-fils-avec-un-module-daffichage-%25C3%25A0-base-de-tm1638%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/" title="Astuce binaire : extraire la valeur d&#39;un bit en C">
+            <span aria-hidden="true">&larr;</span>Précédent
+          </a>
+        </li>
+    
+
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//infores-sn.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Billets récents</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/">Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/">Astuce binaire : extraire la valeur d&#39;un bit en C</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/">HUGO, le générateur de site web statique</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/bitwise">bitwise</a></li><li><a href="/tags/espruino">espruino</a></li><li><a href="/tags/hugo">hugo</a></li><li><a href="/tags/spi">spi</a></li><li><a href="/tags/stm32">stm32</a></li><li><a href="/tags/tip">tip</a></li><li><a href="/tags/tm1638">tm1638</a></li><li><a href="/tags/web">web</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">Haut de page</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  <em>Propulsé par HUGO <br /> et le thème hugo-bootstrap-premium</em>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; Copyright 2016, Claude Defrance
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/popover/angular-storage.min.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script src="/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var ENABLE_POPOVER =  true , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+<script src="/js/popover/angular-modal-service.min.js"></script>
+<script src="/js/angular-ismobile.min.js"></script>
+<script src="/js/popover/popover.min.js"></script>
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,1 +1,0 @@
-# infores-sn.github.io

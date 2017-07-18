@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>HUGO, le générateur de site web statique  &middot; </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="hugo, web, ">
+
+
+<meta property="og:title" content="HUGO, le générateur de site web statique  &middot;  ">
+<meta property="og:site_name" content=""/>
+<meta property="og:url" content="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/" />
+<meta property="og:locale" content="fr-fr">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-01-01T17:26:16Z" />
+<meta property="og:article:modified_time" content="2017-01-01T17:26:16Z" />
+
+  
+    
+<meta property="og:article:tag" content="hugo">
+    
+<meta property="og:article:tag" content="web">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="HUGO, le générateur de site web statique" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "HUGO, le générateur de site web statique",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2017-01-01",
+    "description": "",
+    "wordCount": 1217
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.25.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="/css/bootswatch/default/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/asciidoctor.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="stylesheet" href="/css/style_custom.css">
+
+
+
+  <link rel="stylesheet" href="/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:default]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="{Pervasion} numérique" src="/img/logo.png">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="/about/" >
+                
+                À propos...
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>HUGO, le générateur de site web statique
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-01-01">1 Jan, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Estimation du temps de lecture : 6 min
+  &middot; (1217 mots)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique&amp;url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f&amp;title=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique&amp;body=Check out this site %2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="/tags/hugo" class="label label-primary">hugo</a>
+  
+  <a href="/tags/web" class="label label-primary">web</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <div class="paragraph">
+<p><a href="https://gohugo.io"><code>HUGO</code></a> est un outil logiciel développé avec le <a href="https://golang.org">langage Go</a> de Google et qui permet d&#8217;élaborer de manière assez simple des sites web <strong>statiques</strong> comme celui que vous êtes en train de consulter.</p>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>Cependant, à la différence des <strong>gestionnaires de contenu</strong> (ou <em>CMS</em> pour <em>Content Mangement System</em>) comme <code>WordPress</code>, <code>Joomla</code> ou bien <code>Drupal</code>, celui-ci n&#8217;est pas basé sur une solution de type &#8220;AMP&#8221; (<em>Apache</em> + <em>MySQL</em> + <em>PHP</em>). Ainsi, au lieu de construire les pages web &#8220;à la volée&#8221; sur le serveur au moment où un internaute désire les consulter, <code>HUGO</code> va générer en local l&#8217;ensemble des pages du site après chaque mise à jour de son contenu par son concepteur. Une fois généré, le site n&#8217;a plus qu&#8217;à être transféré chez l&#8217;hébergeur. La tâche de ce dernier ne consiste donc qu&#8217;à servir, tels quels, les fichiers HTML au moment de leur consultation par l&#8217;internaute d&#8217;où le terme de <strong>site web statique</strong>.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;idée est loin d&#8217;être nouvelle mais elle avait été délaissée car elle offrait moins de possiblités en terme de contenu dynamique par rapport à une solution s&#8217;appuyant sur l&#8217;utilisation d&#8217;une base de données et d&#8217;un langage &#8220;côté serveur&#8221; comme <code>PHP</code>. Cependant, la technologie évoluant (<code>HTML5</code>, <code>CSS3</code>, <code>Javascript</code> + librairies comme <code>JQuery</code>, <code>Bootstrap</code>&#8230;&#8203;), il est désormais possible d&#8217;obtenir un site d&#8217;apparence moderne à partir d&#8217;un contenu statique&#8230;&#8203; à condition que les besoins restent raisonnables. Ainsi, cette façon de procéder sera sans aucun doute plus adaptée à un blog qu&#8217;à un site marchand pour lequel la présence d&#8217;une base de donnée sur le serveur est indispensable.</p>
+</div>
+<div class="paragraph">
+<p>J&#8217;ai découvert <code>HUGO</code> suite à la recherche d&#8217;une solution pour construire un site web à partir de fichiers texte utilisant une syntaxe de type Wiki (voir <a href="https://fr.wikipedia.org/wiki/Langage_de_balisage_léger">cet article de Wikipedia</a> pour plus d&#8217;explications). J&#8217;utilise depuis quelques années une d&#8217;entre elles, qui se nomme <a href="http://www.methods.co.nz/asciidoc/"><code>Asciidoc</code></a>, pour produire mes supports de cours. J&#8217;apprécie cette syntaxe car, outre le fait qu&#8217;elle couvre mes besoins (structuration de document, liens hypertextes, coloration syntaxique&#8230;&#8203;), elle me permet, à partir d&#8217;un simple éditeur de texte, de produire des documents en me focalisant davantage sur leur contenu que sur leur apparence au moment de leur rédaction.</p>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="/img/20161231/asciidoc.png"><img src="/img/20161231/asciidoc.png" alt="asciidoc" width="800"></a>
+</div>
+<div class="title">Figure 1. Exemple de fichier &#8220;Asciidoc&#8221; avec son rendu en HTML suite à son traitement pas l&#8217;outil <code>asciidoctor</code> [<a href="http://asciidoctor.org/images/zen-screenshot.png"><em>Source</em></a>]</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Bien qu' <code>HUGO</code> ne comprenne nativement que la syntaxe <code>Markdown</code>, il prend également en charge <code>Asciidoc</code> depuis sa version v0.14 grâce à l&#8217;utilisation d&#8217;une fonctionnalité nommée &#8220;external helpers&#8221;. Le <a href="http://kicad-pcb.org">site web de Kicad</a> (&#8594; logiciel libre de conception électronique) en est une illustration. En effet, la description ou le parcours du <a href="https://github.com/KiCad/kicad-website">dépôt Github</a> (&#8594; service d&#8217;hébergement et de gestion version) où est stocké le source du site montre bien l&#8217;utilisation de fichiers <code>Asciidoc</code>.</p>
+</div>
+<div class="sect1">
+<h2 id="_1_sup_ière_sup_mise_en_œuvre_d_code_hugo_code">1<sup>ière</sup> Mise en œuvre d' <code>HUGO</code></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>De nombreuses ressources du web expliquent comment procéder mais j&#8217;ai personnellement suivi la procédure exposée dans le billet <a href="https://georgecushen.com/create-your-website-with-hugo/#installing-hugo">&#8220;Create a Free Personal Academic Website with Hugo&#8221;</a> car elle correspondait parfaitement à ce que je désire, à savoir, un déploiement sur <a href="https://github.com"><code>Github</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Cette procédure est reprise ci-dessous de manière condensée pour montrer à quel point il est relativement facile de créer son site :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Créer un compte sur <code>Github</code>.</p>
+<div class="paragraph">
+<p>Cette inscription donne droit à l&#8217;attribution d&#8217;une URL personnelle de type <code>https://<em>&lt;nom-utilisateur&gt;</em>.github.io</code>.</p>
+</div>
+</li>
+<li>
+<p>Installer le logiciel de gestion version <code>git</code> sur son poste (&#8594; voir par exemple : <a href="https://git-scm.com/book/fr/v1/Démarrage-rapide-Installation-de-Git">Démarrage rapide - Installation de Git</a>)</p>
+</li>
+<li>
+<p>Installer le logiciel <code>HUGO</code> (&#8594; voir : <a href="https://gohugo.io/overview/installing/">Installing Hugo</a>)</p>
+</li>
+<li>
+<p>Se rendre, avec un terminal, dans un répertoire de son choix puis exécuter <code>HUGO</code> pour qu&#8217;il crée l&#8217;arborescence de fichiers qui contiendra l&#8217;ensemble du site</p>
+<div class="listingblock">
+<div class="title">Exemple sous Linux ou Mac OSX :</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cd ~
+$ hugo new site mon-site-web
+$ cd mon-site-web
+$ tree -f
+.
+├── ./archetypes
+├── ./config.toml
+├── ./content
+├── ./data
+├── ./layouts
+├── ./static
+└── ./themes</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Initialiser un dépôt <code>git</code> pour le source du site ainsi que pour sa version de production (&#8592; résultat du traitement des fichiers source par <code>HUGO</code>) qui sera présente dans le répertoire <code>public/</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ git init
+$ git remote add origin https://github.com/VOTRE-NOM-D-UTILISATEUR/website.git
+$ git submodule add https://github.com/VOTRE-NOM-D-UTILISATEUR/VOTRE-NOM-D-UTILISATEUR.github.io.git public</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Installer un thème pour fixer l&#8217;apparence du site final. J&#8217;ai choisi le thème <a href="http://themes.gohugo.io/academic/">&#8220;Academic&#8221;</a> mais d&#8217;autres sont disponibles sur <a href="http://themes.gohugo.io" class="bare">http://themes.gohugo.io</a>.</p>
+<div class="listingblock">
+<div class="title">Exemple :</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ git clone https://github.com/gcushen/hugo-academic.git themes/academic</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Copier l&#8217;exemple de site fourni avec le thème dans le répertoire racine du site.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cp -av themes/academic/exampleSite/* .</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Démarrer le serveur web fourni par <code>HUGO</code> pour prévisualiser le site qui sera alors consultable à l&#8217;URL <a href="http://localhost:1313" class="bare">http://localhost:1313</a>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo server --watch</code></pre>
+</div>
+</div>
+<hr>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="/img/20161231/1st-site.png"><img src="/img/20161231/1st-site.png" alt="1st site" width="640"></a>
+</div>
+<div class="title">Figure 2. Rendu HTML du site consultable en local sur <code><a href="http://localhost:1313" class="bare">http://localhost:1313</a></code></div>
+</div>
+<hr>
+</li>
+<li>
+<p>Personnaliser l&#8217;apparence du site en modifiant certains paramètres du thème (&#8594; voir : <a href="http://gcushen.github.io/hugo-academic-demo/post/getting-started/#getting-started" class="bare">http://gcushen.github.io/hugo-academic-demo/post/getting-started/#getting-started</a> pour une personnalisation du thème &#8220;Academic&#8221;).</p>
+</li>
+<li>
+<p>Ajouter du contenu au site. Ceci revient à créer pour chaque billet un fichier texte qui contient dans l&#8217;entête un ensemble de métadonnées destinées à être traitées par <code>HUGO</code> au moment de la génération du site. Une partie de ces métadonnées peut être pré-renseignée automatiquement si on crée le fichier avec la commande <code>hugo new <em>chemin/vers/le/fichier.md</em></code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo new post/mon-article.md</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Ici, l&#8217;extension <code>.md</code> du fichier informe <code>HUGO</code> qu&#8217;il doit interpréter son contenu comme du code <code>Markdown</code>.</p>
+<div class="paragraph">
+<p>Si on souhaite utiliser la syntaxe <code>Asciidoc</code>, il faut d&#8217;une part spécifier l&#8217;extension <code>.adoc</code> <strong>et d&#8217;autre part</strong> installer le logiciel <code>asciidoctor</code> car cette syntaxe n&#8217;est pas prise en charge nativement par <code>HUGO</code> et nécessite donc un convertisseur externe.</p>
+</div>
+</li>
+<li>
+<p>Pour le thème &#8220;Academic&#8221;, la procédure pour ajouter du contenu au site est détaillée dans le billet <a href="http://gcushen.github.io/hugo-academic-demo/post/managing-content/">Managing content</a>.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Générer le site définitif en invoquant simplement la commande <code>hugo</code> dans le répertoire racine du site. Ceci aura pour résultat la création d&#8217;un répertoire <code>public/</code> qui contiendra l&#8217;ensemble des fichiers du site (<code>.html</code>, <code>.css</code>, <code>.js</code> etc&#8230;&#8203;)</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ hugo
+Started building sites ...
+Built site for language en:
+0 draft content
+0 future content
+0 expired content
+0 regular pages created
+1 other pages created
+0 non-page files copied
+0 paginator pages created
+0 tags created
+0 categories created
+Built site for language fr:
+0 draft content
+0 future content
+0 expired content
+10 regular pages created
+8 other pages created
+0 non-page files copied
+5 paginator pages created
+4 tags created
+0 categories created
+total in 154 ms</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Déployer le site en copiant le contenu du  répertoire <code>public/</code> sur <code>Github</code>. Ceci se fera à l&#8217;aide d&#8217;une séquence de commandes qui ressemblera certainement à ce qui suit :</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">$ cd public
+$ git add .
+$ git commit -m "1ière version du site"
+$ git push -u origin master</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Je ne sais pas pour l&#8217;instant si <code>HUGO</code> me permettra d&#8217;atteindre les objectifs que je m&#8217;étais fixés pour mon site :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>centraliser/partager des informations en lien avec les sytèmes numériques ;</p>
+</li>
+<li>
+<p>mettre à disposition mes supports de cours.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cependant, la &#8220;philosophie&#8221; de cet outil en plein essor me plait car il constitue une alternative &#8220;plus légère&#8221; à l&#8217;utilisation de mastodontes comme <code>Wordpress</code> tout en faisant appel à des outils que j&#8217;utilise déjà (<code>asciidoctor</code>, <code>git</code>).</p>
+</div>
+<div class="paragraph">
+<p>Malgré un numéro de version (v0.18 à l&#8217;écriture de ces lignes) qui trahit sa jeunesse, la communauté qui participe à son développement semble très active et laisse présager la mise à disposition prochaine d&#8217;une version stable.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;éventualité où <code>HUGO</code> périclite ou ne me satisfait plus, le contenu du site étant constitué de simple fichiers texte, il me sera de toute façon toujours possible de récupérer facilement l&#8217;information utile pour l&#8217;exploiter autrement.</p>
+</div>
+<table class="tableblock frame-none grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="red"><span class="icon"><i class="fa fa-power-off fa-2x"></i></span></span></th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique&amp;url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f&amp;title=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=HUGO%2c%20le%20g%c3%a9n%c3%a9rateur%20de%20site%20web%20statique&amp;body=Check out this site %2f2017%2f01%2f01%2fhugo-le-g%25C3%25A9n%25C3%25A9rateur-de-site-web-statique%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+
+    
+      <li class="next">
+        <a href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/" title="Astuce binaire : extraire la valeur d&#39;un bit en C">
+            Suivant <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//infores-sn.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Billets récents</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/">Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/">Astuce binaire : extraire la valeur d&#39;un bit en C</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/">HUGO, le générateur de site web statique</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/bitwise">bitwise</a></li><li><a href="/tags/espruino">espruino</a></li><li><a href="/tags/hugo">hugo</a></li><li><a href="/tags/spi">spi</a></li><li><a href="/tags/stm32">stm32</a></li><li><a href="/tags/tip">tip</a></li><li><a href="/tags/tm1638">tm1638</a></li><li><a href="/tags/web">web</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">Haut de page</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  <em>Propulsé par HUGO <br /> et le thème hugo-bootstrap-premium</em>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; Copyright 2016, Claude Defrance
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/popover/angular-storage.min.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script src="/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var ENABLE_POPOVER =  true , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+<script src="/js/popover/angular-modal-service.min.js"></script>
+<script src="/js/angular-ismobile.min.js"></script>
+<script src="/js/popover/popover.min.js"></script>
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+

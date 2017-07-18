@@ -1,0 +1,27 @@
+/*
+.videoblock {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.videoblock div.title {
+    position: absolute;
+    top: 0;
+}
+
+.videoblock iframe,.videoblock embed,.videoblock object {
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+*/
+@media screen and (max-width: 768px) {
+    div.sidebar div.toc,div.sidebar div.taxonomies,div.sidebar div.latest-posts {
+        display:none;
+    }
+}

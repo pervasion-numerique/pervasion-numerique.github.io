@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Astuce binaire : extraire la valeur d&#39;un bit en C  &middot; </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="bitwise, tip, ">
+
+
+<meta property="og:title" content="Astuce binaire : extraire la valeur d&#39;un bit en C  &middot;  ">
+<meta property="og:site_name" content=""/>
+<meta property="og:url" content="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/" />
+<meta property="og:locale" content="fr-fr">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-01-06T17:13:37Z" />
+<meta property="og:article:modified_time" content="2017-01-06T17:13:37Z" />
+
+  
+    
+<meta property="og:article:tag" content="bitwise">
+    
+<meta property="og:article:tag" content="tip">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<meta name="twitter:title" content="Astuce binaire : extraire la valeur d&#39;un bit en C" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/" />
+<meta name="twitter:domain" content="/">
+  
+
+  
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Astuce binaire : extraire la valeur d&#39;un bit en C",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2017-01-06",
+    "description": "",
+    "wordCount": 1029
+  }
+</script>
+  
+
+
+
+<link rel="canonical" href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/touch-icon-144-precomposed.png">
+<link rel="icon" href="/favicon.png">
+<meta name="generator" content="Hugo 0.25.1" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+
+    <link rel="stylesheet" href="/css/bootswatch/default/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/asciidoctor.css" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="stylesheet" href="/css/style_custom.css">
+
+
+
+  <link rel="stylesheet" href="/css/highlight/default.css">
+
+
+</head>
+<body class="map[name:default]" data-ng-app="myapp" data-ng-controller="MyController" data-ng-mouseleave="MouseLeave($event)">
+    <header id="main-header">
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+          
+          <a class="navbar-brand-img" href="/">
+            <img alt="{Pervasion} numérique" src="/img/logo.png">
+            
+          </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            
+            <li class="">
+
+              <a href="/post/" >
+                
+                Blog
+              </a>
+            </li>
+            
+            <li class="">
+
+              <a href="/about/" >
+                
+                À propos...
+              </a>
+            </li>
+            
+            
+              
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+  </header>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="text-center">
+
+    <h1>Astuce binaire : extraire la valeur d&#39;un bit en C
+</h1>
+
+    <div class="metas">
+<small>
+  <i class="fa fa-calendar"></i>
+  <time datetime="2017-01-06">6 Jan, 2017</time>
+</small>
+
+
+  <small>
+  &middot; Estimation du temps de lecture : 5 min
+  &middot; (1029 mots)
+  &middot; 
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C&amp;url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f&amp;title=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C&amp;body=Check out this site %2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  </small>
+
+<div class="margin-10">
+  <i class="fa fa-tags"></i>
+  
+  <a href="/tags/bitwise" class="label label-primary">bitwise</a>
+  
+  <a href="/tags/tip" class="label label-primary">tip</a>
+  
+
+
+</div>
+
+<br>
+</div>
+
+  </div>
+</div>
+
+      <div class="content">
+  <div class="paragraph">
+<p>Voici une astuce découverte par hasard dans un fichier source de la librairie standard d&#8217;Arduino.</p>
+</div>
+<div class="paragraph">
+<p></p>
+</div>
+<div class="paragraph">
+<p>À l&#8217;occasion de la préparation d&#8217;un cours d&#8217;initiation à l&#8217;électronique traitant des registres à décalage, je suis tombé sur une astuce de manipulation de bits que je n&#8217;avais jamais rencontrée. Celle-ci vise à extraire la valeur d&#8217;un bit du contenu d&#8217;une variable.</p>
+</div>
+<div class="paragraph">
+<p>Cette astuce est utilisée dans le code source de la fonction <code>shiftOut()</code> disponible dans le fichier <code>wiring_shift.c</code> (&#8594; répertoire <code>Contents/Java/hardware/arduino/avr/cores/arduino</code> du paquet <code>Arduino.app</code> sous Mac OSX). Elle apparaît au niveau de la spécification du 2<sup>ième</sup> argument des fonctions <code>digitalWrite()</code> contenues dans le bloc <code>if&#8230;&#8203;else&#8230;&#8203;</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-c" data-lang="c">void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val)
+{
+   uint8_t i;
+
+   for (i = 0; i &lt; 8; i++)  {
+      if (bitOrder == LSBFIRST)
+         digitalWrite(dataPin, !!(val &amp; (1 &lt;&lt; i)));
+         //                    ~~~~~~~~~~~~~~~~~~
+      else
+         digitalWrite(dataPin, !!(val &amp; (1 &lt;&lt; (7 - i))));
+         //                    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+      digitalWrite(clockPin, HIGH);
+      digitalWrite(clockPin, LOW);
+   }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cette fonction consiste à envoyer sur la broche <code>dataPin</code> de l&#8217;Arduino et les unes après les autres, les valeurs des 8 bits d&#8217;un octet <code>val</code> (on parle aussi de <strong>sérialisation</strong> de l&#8217;octet). L&#8217;ordre dans lequel les bits sont envoyés est déterminé par le paramètre <code>bitOrder</code> (<code>LSBFIRST</code> &#8594; bit de poids faible en 1<sup>ier</sup>). Chaque envoi de bit sur la broche <code>dataPin</code> est enfin signalé par l&#8217;émission d&#8217;une impulsion sur la broche <code>clockPin</code>.</p>
+</div>
+<div class="paragraph">
+<p>Le schéma ci-dessous illustre un cas typique d&#8217;utilisation de la fonction <code>shiftOut()</code> dans un montage à base d&#8217;un registre à décalage <a href="http://www.nxp.com/documents/data_sheet/74HC_HCT595.pdf">74HC595</a> configuré ici en mode  <em>Serial IN - Parallel OUT</em>. Celui-ci commande simultanément les 8 broches d&#8217;entrée d&#8217;un afficheur 7 segments (signaux <code>A</code> à <code>H</code> sur le schéma) à partir des informations que l&#8217;Arduino lui fournit à travers uniquement 2 broches (<code>DS</code> pour les bits de l&#8217;octet sérialisé et <code>SH_CP</code> pour l&#8217;impulsion signalant leur mise à disposition). L&#8217;appel à un composant externe permet ainsi de libérer 6 broches sur l&#8217;Arduino pour un autre usage.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En réalité, une 3<sup>ième</sup> broche de l&#8217;Arduino est utilisée. Celle-ci est nommée LATCH sur le schéma mais vu qu&#8217;elle ne sert pas pour le processus de (dé)sérialisation de l&#8217;octet, elle n&#8217;est pas comptabilisée.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<a class="image" href="/img/20170106/schema_74hc595.png"><img src="/img/20170106/schema_74hc595.png" alt="schema 74hc595" width="800"></a>
+</div>
+</div>
+<div class="paragraph">
+<p>Mais, revenons à l&#8217;astuce en question&#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>Dans le 1<sup>ier</sup> <code>digitalWrite()</code>, le 2<sup>ième</sup> argument est spécifié par l&#8217;expression <code>!!(val &amp; (1 &lt;&lt; i)</code>. Celle-ci permet de déterminer la valeur du bit de rang <code>i</code> de l&#8217;octet <code>val</code> à générer sur la broche <code>dataPin</code>.</p>
+</div>
+<div class="paragraph">
+<p>Cette expression m&#8217;a un peu intrigué au départ car elle fait usage à la fois d&#8217;opérateurs de logique booléenne et d&#8217;opérateurs agissant sur des bits (<em>bitwise operators</em> en anglais ou &#8220;opérateurs bit à bit&#8221; en français). Le <code>!</code> correspond ainsi à la négation de l&#8217;algèbre de Boole tandis que le <code>&amp;</code> et le <code>&lt;&lt;</code> correspondent respectivement aux opérations bit à bit du ET et du décalage à gauche.</p>
+</div>
+<div class="paragraph">
+<p>Faire intervenir des opérateurs à ce point différents dans le cadre d&#8217;une même expression doit toujours, à mon sens, susciter la défiance.</p>
+</div>
+<div class="paragraph">
+<p>Avant de décomposer cette expression sur un cas concret afin de &#8220;démontrer&#8221; le bien fondé de l&#8217;astuce, rappelons comment, au niveau du langage C, les valeurs de vérité des propositions booléennes sont déterminées :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>sont considérées comme FAUSSES les expressions dont l&#8217;évaluation donne 0 ;</p>
+</li>
+<li>
+<p>sont considérées comme VRAIES les expressions dont l&#8217;évaluation donne un nombre <strong>différent de 0</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Dans le cadre de la démonstration, considérons que <code>val</code> contient la valeur binaire <code>10100101</code> et que la valeur décimale de <code>i</code> est <code>2</code>.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;évaluation de <code>(1&lt;&lt;i)</code> mène à la valeur binaire <code>00000100</code> (1 décalé de 2 positions vers la gauche).</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;évaluation de <code>(val &amp; (1 &lt;&lt; i)</code>, qui correspond à une opération dîte de <strong>masquage</strong>, mène également à la valeur binaire <code>00000100</code> ou <code>4</code> en décimal. En effet :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">   10100101
+ &amp; 00000100
+ ----------
+   00000100</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La suite de l&#8217;évaluation portant sur la double négation est plus délicate. En effet, la négation de la valeur <code>4</code>, c&#8217;est-à-dire VRAI dans un contexte booléen, va bien nous donner 0 (&#8594; FAUX) et la négation de ce résultat va nous donner VRAI. Cependant, qu&#8217;est-ce qui nous garantit que la valeur numérique de ce VRAI sera le <code>1</code> attendu puisqu&#8217;en C le VRAI n&#8217;est qu&#8217;un nombre différent de 0 ?</p>
+</div>
+<div class="paragraph">
+<p>Je pense avoir trouvé la réponse dans le paragraphe <strong>6.5.3.3 Unary arithmetic operators</strong> de la <a href="http://www.open-std.org/jtc1/sc22/WG14/www/docs/n1256.pdf">norme ISO/IEC 9899:TC3</a> qui spécifie le langage C dans sa version C99.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The result of the logical negation operator ! is 0 if the value of its operand compares unequal to 0, 1 <strong>if the value of its operand compares equal to 0</strong>. The result has type int. The expression !E is equivalent to (0==E).</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; ISO/IEC 9899:TC3 - Programming languages - C
+</div>
+</div>
+<div class="paragraph">
+<p>Conformément à ce que dit la norme dans la dernière partie de la 1<sup>ière</sup> phrase, le résultat final de l&#8217;évaluation de l&#8217;ensemble de l&#8217;expression de notre exemple donnera donc bien la valeur attendue, c&#8217;est-à-dire <code>1</code>, pour le bit de rang 2 de <code>val</code> (i.e. le 3<sup>ième</sup> bit en partant de la droite) . En effet, <code>!!(val &amp; (1 &lt;&lt; i) = !!(4) = !(!(4)) = !(0) = 1</code>.</p>
+</div>
+<div class="paragraph">
+<p>Afin d&#8217;être complet, considérons à présent un bit à 0 dans l&#8217;octet <code>val</code> en prenant <code>i = 4</code>. L&#8217;évaluation de <code>(val &amp; (1 &lt;&lt; i)</code> mène cette fois à la valeur binaire <code>00000000</code> ou simplement <code>0</code> en décimal. En effet :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">   10100101
+ &amp; 00010000
+ ----------
+   00000000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;ensemble de l&#8217;expression nous donne bien <code>0</code>. En effet, <code>!!(val &amp; (1 &lt;&lt; i) = !!(0) = !(!(0)) = !(1) = 0</code>.</p>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La manipulation de valeurs numériques au niveau du bit devient inévitable au fur et à mesure que l&#8217;on se rapproche du matériel (interprétation de la valeur d&#8217;un registre de composant programmable, analyse d&#8217;une trame de communication&#8230;&#8203;). De nombreuses techniques en langage C existent (voir par exemple <a href="https://community.embarcadero.com/article/technical-articles/149-tools/14514-bit-twiddling">&#8220;Bit Twiddling&#8221;</a> ou l&#8217;incontournable <a href="https://graphics.stanford.edu/~seander/bithacks.html">"Bit Twiddling Hacks"</a>).</p>
+</div>
+<div class="paragraph">
+<p>Malgré sa simplicité apparente, l&#8217;astuce vue dans ce billet m&#8217;a intrigué la 1<sup>ière</sup> fois que je l&#8217;ai rencontrée dans la mesure où son expression considérait tour à tour ses opérandes comme des valeurs numériques puis booléennes pour enfin aboutir à une valeur numérique.</p>
+</div>
+<div class="paragraph">
+<p>Dans l&#8217;éventualité où certains se seraient posés la même question que moi face à l&#8217;expression en langage C de cette technique de manipulation de bits, j&#8217;espère leur avoir apporté une explication satisfaisante.</p>
+</div>
+<table class="tableblock frame-none grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><span class="red"><span class="icon"><i class="fa fa-power-off fa-2x"></i></span></span></th>
+</tr>
+</thead>
+</table>
+</div>
+</div>
+</div>
+
+
+      <footer>
+  
+<span class="share-box">Share this on:
+    <a href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-facebook-official "></i></a>
+
+    <a href="https://twitter.com/intent/tweet?text=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C&amp;url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-twitter"></i></a>
+
+    <a href="https://plus.google.com/share?url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-google-plus"></i></a>
+
+    <a href="http://www.reddit.com/submit?url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-reddit"></i></a>
+
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f&amp;title=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"><i class="fa fa-linkedin"></i></a>
+
+    <a href="mailto:?subject=Astuce%20binaire%20%3a%20extraire%20la%20valeur%20d%27un%20bit%20en%20C&amp;body=Check out this site %2f2017%2f01%2f06%2fastuce-binaire--extraire-la-valeur-dun-bit-en-c%2f" data-proofer-ignore=""><i class="fa fa-envelope"></i></a>
+  </span>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      
+  
+    <nav><ul class="pager">
+    
+        <li class="previous">
+          <a href="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/" title="HUGO, le générateur de site web statique">
+            <span aria-hidden="true">&larr;</span>Précédent
+          </a>
+        </li>
+    
+
+    
+      <li class="next">
+        <a href="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/" title="Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638">
+            Suivant <span aria-hidden="true">&rarr;</span>
+        </a>
+      </li>
+    
+    </ul> </nav>
+  
+
+
+</div>
+
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//infores-sn.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+    </div>
+    
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+        <div>
+  
+
+    <div class="section">
+      <header><div class="title"><b>Billets récents</b></div></header>
+      <div class="content">
+        <ul>
+        
+          <li>
+          <a href="/2017/07/15/interfa%C3%A7age-en-spi-3-fils-avec-un-module-daffichage-%C3%A0-base-de-tm1638/">Interfaçage en SPI 3-fils avec un module d&#39;affichage à base de TM1638</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/06/astuce-binaire--extraire-la-valeur-dun-bit-en-c/">Astuce binaire : extraire la valeur d&#39;un bit en C</a>
+          </li>
+        
+          <li>
+          <a href="/2017/01/01/hugo-le-g%C3%A9n%C3%A9rateur-de-site-web-statique/">HUGO, le générateur de site web statique</a>
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+
+    
+      
+      
+      <div class="section taxonomies">
+        <header><div class="title"><b>tag</b></div></header>
+
+        <div class="content">
+          <ul>
+            <li><a href="/tags/bitwise">bitwise</a></li><li><a href="/tags/espruino">espruino</a></li><li><a href="/tags/hugo">hugo</a></li><li><a href="/tags/spi">spi</a></li><li><a href="/tags/stm32">stm32</a></li><li><a href="/tags/tip">tip</a></li><li><a href="/tags/tm1638">tm1638</a></li><li><a href="/tags/web">web</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    
+      
+      
+    
+
+</div>
+
+      </div>
+    
+  </div>
+</div>
+    
+<footer class="footer hidden-print">
+  <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+           <div class="pull-left">
+  <a class="toplink" href="javascript:" id="return-to-top">Haut de page</a>
+</div>
+<div class="pull-right">
+
+</div>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              
+    
+<div class="container footline">
+    <small>
+  <em>Propulsé par HUGO <br /> et le thème hugo-bootstrap-premium</em>
+
+</small>
+</div>
+
+
+    
+<div class="container copyright">
+    <small>
+  &copy; Copyright 2016, Claude Defrance
+
+  </small>
+</div>
+
+
+
+        </div>
+    </div>
+  </div>
+</footer>
+
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<script src="/js/angular.min.js"></script>
+<script src="/js/popover/angular-storage.min.js"></script>
+<script src="/js/highlight.pack.js"></script>
+<script src="/js/site.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script>
+var ENABLE_POPOVER =  true , 
+EXPIRE_COOKIE =  5 , 
+SHOW_MODAL_TIMEOUT =  10000 , 
+MOUSE_LEAVE =  true , 
+MODAL_SIZE = "", 
+POST_URL = "https://zapier.com/hooks/catch/1227563/", 
+SIGNUP_HEADER = "Join Our Newsletter",
+HEADER_IMAGE = "//placehold.it/1000x600",
+IMG_DESCRIPTION = "Placeholder image for this popover modal optin form",
+SIGNUP_TEXT = "Signup today for free and be the first to get notified on new updates.",
+INPUT_PLACEHOLDER = "Enter your email",
+SUBMIT_BUTTON = "Subscribe",
+SUCCESS_MESSAGE = "Thanks for your subscription!",
+ERROR_MESSAGE = "Submitting form failed!",
+OPTIN =  true ,
+COOKIE_NAME = "mycookie1",
+CONTENTLANGUAGE = ""; 
+</script>
+
+<script src="/js/popover/angular-modal-service.min.js"></script>
+<script src="/js/angular-ismobile.min.js"></script>
+<script src="/js/popover/popover.min.js"></script>
+
+
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/config/TeX-AMS-MML_HTMLorMML.js"></script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    for(var all in MathJax.Hub.getAllJax()) {
+        all.SourceElement().parentNode.className += ' has-jax';
+
+    }
+});
+</script>
+
+
+
+
+
+
+  </body>
+</html>
+
